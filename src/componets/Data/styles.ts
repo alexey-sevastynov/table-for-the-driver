@@ -19,38 +19,8 @@ export const Root = styled.div`
     border-radius: ${(props) =>
       props.results === props.inlist ? "0px 0px 10px 10px" : null};
 
-    /* & .id,
-    .customer,
-    .route,
-    .hours,
-    .km,
-    .income,
-    .expenditure {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    @media (max-width: 690px) {
+      border-radius: unset;
     }
-
-    & .id {
-      width: 30px;
-    }
-    & .customer {
-      width: 130px;
-    }
-    & .route {
-      width: 250px;
-    }
-    & .hours {
-      width: 50px;
-    }
-    & .km {
-      width: 50px;
-    }
-    & .income {
-      width: 75px;
-    }
-    & .expenditure {
-      width: 105px;
-    } */
   `}
 `;

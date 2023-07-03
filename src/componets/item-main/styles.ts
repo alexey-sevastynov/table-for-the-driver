@@ -43,6 +43,54 @@ export const Root = styled.div`
     & .expenditure {
       width: 125px;
     }
+
+    @media (max-width: 810px) {
+      & .expenditure {
+        display: none;
+      }
+    }
+
+    @media (max-width: 690px) {
+      & .id {
+        width: 5%;
+      }
+      & .customer {
+        width: 20%;
+      }
+      & .route {
+        width: 25%;
+      }
+      & .hours {
+        width: 15%;
+      }
+      & .km {
+        width: 15%;
+      }
+      & .income {
+        width: 20%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      & .route {
+        display: none;
+      }
+      & .id {
+        width: 10%;
+      }
+      & .customer {
+        width: 30%;
+      }
+      & .hours {
+        width: 20%;
+      }
+      & .km {
+        width: 20%;
+      }
+      & .income {
+        width: 20%;
+      }
+    }
   `}
 `;
 

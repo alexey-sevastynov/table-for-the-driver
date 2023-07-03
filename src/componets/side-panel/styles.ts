@@ -12,5 +12,9 @@ export const Root = styled.aside`
     & h1 {
       padding-bottom: 75px;
     }
+
+    @media (max-width: 1120px) {
+      display: none;
+    }
   `}
 `;

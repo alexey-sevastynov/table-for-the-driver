@@ -36,6 +36,10 @@ export const Root = styled.aside`
           display: flex;
           justify-content: space-between;
 
+          & h3 {
+            line-height: 23px;
+          }
+
           &__input {
             position: relative;
             margin-bottom: 24px;
@@ -54,6 +58,45 @@ export const Root = styled.aside`
               transform: translateY(-50%);
             }
           }
+        }
+      }
+    }
+
+    @media (max-width: 1120px) {
+      flex-direction: column;
+
+      & .colum_2 {
+        width: 100%;
+
+        & main {
+          height: unset;
+          border-radius: 25px 25px 0px 0px;
+        }
+      }
+    }
+
+    @media (max-width: 810px) {
+      & .colum_2 {
+        & main {
+          max-width: 665px;
+        }
+      }
+    }
+    @media (max-width: 690px) {
+       
+      & .colum_2 {
+
+         & h2 {
+        padding: 30px 0px 20px 20px;
+      }
+        & main {
+          margin-left: 10px;
+          margin-right: 10px;
+          padding: 60px 0px 20px 0px;
+          max-width: 765px;
+
+           & .header {
+         padding: 0px 10px;
         }
       }
     }

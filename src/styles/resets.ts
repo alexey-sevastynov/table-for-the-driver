@@ -51,19 +51,37 @@ h3, h4, h5{
 h1 {
     font-size: 36px;
     font-weight: 700;
+
+    @media(max-width: 600px){
+        font-size: 28px;
+        font-weight: 700;
+    }
 }
 h2 {
     font-size: 24px;
     font-weight: 700;
+     @media(max-width: 600px){
+        font-size: 20px;
+        font-weight: 700;
+    }
 }
 h3 {
     font-size: 18px;
+     @media(max-width: 600px){
+        font-size: 16px;
+       
+    }
 }
 h4 {
     font-size: 16px;
+     @media(max-width: 600px){
+        font-size: 14px;
+       
+    }
 }
 h5 {
     font-size: 12px;
+     
 }
 
 p {

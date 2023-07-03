@@ -4,6 +4,7 @@ import * as S from "./styles";
 import SidePanel from "../../componets/side-panel/SidePanel";
 import { Icon } from "../../componets/Icon";
 import ItemMain from "../../componets/item-main/ItemMain";
+import HeaderMobile from "../../componets/header-mobile/HeaderMobile";
 
 interface IHomeProps {}
 
@@ -11,6 +12,7 @@ const Home: React.FC<IHomeProps> = () => {
   return (
     <S.Root>
       <SidePanel />
+      <HeaderMobile />
       <div className="colum_2">
         <h2>Hello, world!</h2>
         <main>
