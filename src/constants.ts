@@ -9,6 +9,16 @@ export const buttonLinkList = [
   },
 ];
 
+export const tableHadeNames = [
+  "id",
+  "customer",
+  "route",
+  "hours",
+  "km",
+  "income",
+  "expenditure",
+];
+
 export const ROUTES = {
   HOME: "/",
 };

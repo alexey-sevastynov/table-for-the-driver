@@ -6,7 +6,6 @@ export const Root = styled.aside`
 
     background-color: ${theme.colors.white};
     width: 300px;
-    height: 100%;
 
     padding: 30px 0px 0px 30px;
 
