@@ -21,4 +21,6 @@ export const tableHadeNames = [
 
 export const ROUTES = {
   HOME: "/",
+  MOUNTHS: "/mounths",
+  ADD: "/add",
 };

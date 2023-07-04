@@ -2,6 +2,7 @@ import React from "react";
 import { useDynamicSvgImport } from "../hooks/useDynamicSvgImport";
 
 import { BallTriangle } from "react-loader-spinner";
+import { useLocation } from "react-router-dom";
 
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
   iconName: string;

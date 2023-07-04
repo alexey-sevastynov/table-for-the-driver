@@ -4,6 +4,9 @@ export default {
     white: "#FFFFFF",
     grey: "#737373",
 
+    hover: "#FAFEFF",
+    active: "#f0fcff",
+
     paid: "#BAFFB8",
     uknown: "#FEFFB8",
     debt: "#FFB8B8",

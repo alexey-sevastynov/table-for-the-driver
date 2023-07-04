@@ -1,7 +1,8 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-export const Root = styled.a`
+export const Root = styled(NavLink)`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
@@ -17,18 +18,13 @@ export const Root = styled.a`
 
     margin-bottom: 6px;
 
-    & h3 {
-      color: ${(props) =>
-        //@ts-ignore
-        props.color === "active" ? theme.colors.white : theme.colors.grey};
-    }
-
     & svg {
       margin: 0px 20px 0px 10px;
+    }
+
+    & .active {
       & path {
-        stroke: ${(props) =>
-          //@ts-ignore
-          props.color === "active" ? theme.colors.white : theme.colors.grey};
+        stroke: ${theme.colors.white};
       }
     }
   `}

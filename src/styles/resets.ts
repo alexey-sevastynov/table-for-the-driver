@@ -17,7 +17,7 @@ body {
 }
 
 input {
-        font-family:'Montserrat', sans-serif;
+     font-family:'Montserrat', sans-serif;
 
      border: 1px solid ${(props) => props.theme.colors.grey};
      border-radius: 5px;
@@ -85,6 +85,10 @@ h5 {
 }
 
 p {
+    font-size: 14px;
+}
+
+button{
     font-size: 14px;
 }
 
