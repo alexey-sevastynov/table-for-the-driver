@@ -1,8 +1,13 @@
 import React from "react";
 
 import * as S from "./styles";
-import { tableHadeNames } from "../../constants";
+import { dayNames, tableHadeNames } from "../../constants";
 import Data from "../Data/Data";
+import { showCurrentDate } from "../../helpers/showCurrentDate";
+import { showDate } from "../../helpers/showDate";
+import { getWeekDay } from "../../helpers/getWeekDay";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { IWork, fetchWorks } from "../../redux/slices/worksSlice";
 
 const array = [
   {
@@ -43,14 +48,21 @@ const array = [
   },
 ];
 
-interface IItemMainProps {}
+interface IItemMainProps {
+  day: number;
+  month: number;
+  year: number;
+}
 
-const ItemMain: React.FC<IItemMainProps> = () => {
+const ItemMain: React.FC<IItemMainProps> = ({ day, month, year }) => {
+  const items = useAppSelector((props) => props.works.jobs.items);
+  const date = new Date(year, month - 1, day);
+
   return (
     <S.Root>
       <S.Header>
-        <h4>1.06.23</h4>
-        <h5>Saturday</h5>
+        <h4>{showDate(day, month, year)}</h4>
+        <h5>{getWeekDay(date)}</h5>
       </S.Header>
 
       <S.TableHead>
@@ -61,23 +73,28 @@ const ItemMain: React.FC<IItemMainProps> = () => {
         ))}
       </S.TableHead>
 
-      {array.map((item) => {
-        const amountWorks = array.length;
+      {items
+        .filter((item: IWork) => item.day === day)
+        .sort((a: IWork, b: IWork) => (a.id > b.id ? 1 : -1))
+        .map((item: IWork) => {
+          const amountWorks = items.filter(
+            (item: IWork) => item.day === day
+          ).length;
 
-        return (
-          <Data
-            key={item.id}
-            id={item.id}
-            customer={item.customer}
-            route={item.route}
-            hours={item.hours}
-            km={item.km}
-            income={item.income}
-            status={item.status}
-            amountWorks={amountWorks}
-          />
-        );
-      })}
+          return (
+            <Data
+              key={item.id}
+              id={item.id}
+              customer={item.customer}
+              route={item.route}
+              hours={item.hours}
+              km={item.km}
+              income={item.income}
+              status={item.status}
+              amountWorks={amountWorks}
+            />
+          );
+        })}
     </S.Root>
   );
 };

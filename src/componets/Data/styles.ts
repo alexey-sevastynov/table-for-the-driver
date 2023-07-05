@@ -15,7 +15,7 @@ export const Root = styled.div`
       props.tabIndex === 4 ? theme.colors.other : null};
 
     border-radius: ${(props) =>
-      props.tabIndex === 1 ? "10px 10px 0px 0px" : null};
+      props.inlist === 1 ? "10px 10px 0px 0px" : null};
     border-radius: ${(props) =>
       props.results === props.inlist ? "0px 0px 10px 10px" : null};
 

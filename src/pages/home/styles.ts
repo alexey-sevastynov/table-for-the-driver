@@ -23,8 +23,19 @@ export const Root = styled.div`
         height: calc(100vh - 120px);
 
         & .overflow {
+         
           height: calc(100% - 80px);
           overflow: scroll;
+
+
+          & .center{
+             height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
+          }
+
         }
 
         & .overflow::-webkit-scrollbar {

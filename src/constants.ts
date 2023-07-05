@@ -24,3 +24,13 @@ export const ROUTES = {
   MOUNTHS: "/mounths",
   ADD: "/add",
 };
+
+export const dayNames = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
