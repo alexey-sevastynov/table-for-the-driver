@@ -1,52 +1,13 @@
 import React from "react";
 
 import * as S from "./styles";
-import { dayNames, tableHadeNames } from "../../constants";
+import { tableHadeNames } from "../../constants";
 import Data from "../Data/Data";
-import { showCurrentDate } from "../../helpers/showCurrentDate";
+
 import { showDate } from "../../helpers/showDate";
 import { getWeekDay } from "../../helpers/getWeekDay";
-import { useAppDispatch, useAppSelector } from "../../redux/hook";
-import { IWork, fetchWorks } from "../../redux/slices/worksSlice";
-
-const array = [
-  {
-    id: 1,
-    customer: "perrezd",
-    route: "",
-    hours: 2,
-    km: 22,
-    income: 700,
-    status: 1,
-  },
-  {
-    id: 2,
-    customer: "perrezd",
-    route: "",
-    hours: 2,
-    km: 22,
-    income: 700,
-    status: 2,
-  },
-  {
-    id: 3,
-    customer: "perrezd",
-    route: "",
-    hours: 2,
-    km: 22,
-    income: 700,
-    status: 3,
-  },
-  {
-    id: 4,
-    customer: "perrezd",
-    route: "",
-    hours: 2,
-    km: 22,
-    income: 700,
-    status: 4,
-  },
-];
+import { useAppSelector } from "../../redux/hook";
+import { IWork } from "../../redux/slices/worksSlice";
 
 interface IItemMainProps {
   day: number;
@@ -74,11 +35,15 @@ const ItemMain: React.FC<IItemMainProps> = ({ day, month, year }) => {
       </S.TableHead>
 
       {items
-        .filter((item: IWork) => item.day === day)
+        .filter(
+          (item: IWork) =>
+            item.day === day && item.month === month && item.year === year
+        )
         .sort((a: IWork, b: IWork) => (a.id > b.id ? 1 : -1))
         .map((item: IWork) => {
           const amountWorks = items.filter(
-            (item: IWork) => item.day === day
+            (item: IWork) =>
+              item.day === day && item.month === month && item.year === year
           ).length;
 
           return (

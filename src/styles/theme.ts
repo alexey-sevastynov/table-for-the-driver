@@ -11,5 +11,7 @@ export default {
     uknown: "#FEFFB8",
     debt: "#FFB8B8",
     other: "#EEEEEE",
+
+    error: "red",
   },
 };

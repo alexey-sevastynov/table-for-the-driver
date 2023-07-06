@@ -5,14 +5,10 @@ export const Root = styled.div`
     height: 28px;
     display: flex;
 
-    background-color: ${(props) =>
-      props.tabIndex === 1 ? theme.colors.paid : null};
-    background-color: ${(props) =>
-      props.tabIndex === 2 ? theme.colors.uknown : null};
-    background-color: ${(props) =>
-      props.tabIndex === 3 ? theme.colors.debt : null};
-    background-color: ${(props) =>
-      props.tabIndex === 4 ? theme.colors.other : null};
+    background-color: ${(props) => props.tabIndex === 1 && theme.colors.paid};
+    background-color: ${(props) => props.tabIndex === 2 && theme.colors.uknown};
+    background-color: ${(props) => props.tabIndex === 3 && theme.colors.debt};
+    background-color: ${(props) => props.tabIndex === 4 && theme.colors.other};
 
     border-radius: ${(props) =>
       props.inlist === 1 ? "10px 10px 0px 0px" : null};

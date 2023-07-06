@@ -10,18 +10,43 @@ export interface IWork {
   month: number;
   year: number;
   customer: string;
-  route: string;
+  route?: string;
   hours: number;
   km: number;
-  income: number;
-  expenditure: number;
-  status: number;
+  income?: number;
+  expenditure?: number;
+  description?: string;
+  status?: number;
 }
+
+export type fetchPostWorkArgs = {
+  id: number;
+  day: number;
+  month: number;
+  year: number;
+  customer: string;
+  route?: string;
+  hours: number;
+  km: number;
+  income?: number;
+  expenditure?: number;
+  description?: string;
+  status: number;
+};
 
 export const fetchWorks = createAsyncThunk<IWork[]>(
   "works/fetchWorks",
   async () => {
     const { data } = await axios.get(`${API_URL}jobs`);
+
+    return data;
+  }
+);
+
+export const fetchPostWork = createAsyncThunk<IWork, fetchPostWorkArgs>(
+  "workPost/fetchWorks",
+  async (params) => {
+    const { data } = await axios.post(`${API_URL}jobs`, params);
 
     return data;
   }
@@ -56,6 +81,20 @@ const worksSlice = createSlice({
       state.jobs.status = "loaded";
     });
     builder.addCase(fetchWorks.rejected, (state) => {
+      state.jobs.items = [];
+      state.jobs.status = "error";
+    });
+
+    builder.addCase(fetchPostWork.pending, (state) => {
+      state.jobs.items = [];
+      state.jobs.status = "loading";
+    });
+    builder.addCase(fetchPostWork.fulfilled, (state, action) => {
+      //@ts-ignore
+      state.jobs.items = [...state.jobs.items, action.payload];
+      state.jobs.status = "loaded";
+    });
+    builder.addCase(fetchPostWork.rejected, (state) => {
       state.jobs.items = [];
       state.jobs.status = "error";
     });

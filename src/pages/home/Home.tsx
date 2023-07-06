@@ -20,6 +20,7 @@ const Home: React.FC<IHomeProps> = () => {
   const date = new Date();
 
   const currentMonth = date.getMonth() + 1;
+  const currentYear = date.getFullYear();
 
   const apiWorks = async () => {
     await dispatch(fetchWorks());
@@ -31,7 +32,10 @@ const Home: React.FC<IHomeProps> = () => {
 
   const dataOnWorks = items
     .filter(
-      (item: IWork, id: number) => currentMonth === item.month && item.id === 1
+      (item: IWork) =>
+        currentMonth === item.month &&
+        item.id === 1 &&
+        currentYear === item.year
     )
     .sort((a: IWork, b: IWork) => (a.day > b.day ? 1 : -1))
     .map((item: IWork) => (

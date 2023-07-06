@@ -16,7 +16,7 @@ body {
     margin: 0 auto; 
 }
 
-input {
+input, select {
      font-family:'Montserrat', sans-serif;
 
      border: 1px solid ${(props) => props.theme.colors.grey};
@@ -31,6 +31,8 @@ input {
         }
 }
 
+
+
 a {
     color: inherit;
     text-decoration: none;
@@ -38,9 +40,10 @@ a {
     font-size: 18px;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, h6 {
     margin: 0;
     font-weight: 400;
+    line-height: unset;
  
 }
 
@@ -83,9 +86,15 @@ h5 {
     font-size: 12px;
      
 }
+h5 {
+    font-size: 10px;
+    
+     
+}
 
 p {
     font-size: 14px;
+    margin: 0;
 }
 
 button{
