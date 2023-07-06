@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 export const Root = styled.div`
@@ -94,7 +95,7 @@ export const Root = styled.div`
   `}
 `;
 
-export const Header = styled.div`
+export const Header = styled(Link)`
   ${({ theme }) => css`
     display: flex;
     justify-content: center;
@@ -103,6 +104,10 @@ export const Header = styled.div`
     & h4 {
       font-weight: 700;
       padding-right: 6px;
+    }
+
+    &:hover {
+      text-decoration: underline;
     }
   `}
 `;

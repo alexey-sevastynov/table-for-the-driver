@@ -23,6 +23,7 @@ export const ROUTES = {
   HOME: "/",
   MOUNTHS: "/mounths",
   ADD: "/add",
+  DAY: "/day",
 };
 
 export const dayNames = [

@@ -21,7 +21,7 @@ const ItemMain: React.FC<IItemMainProps> = ({ day, month, year }) => {
 
   return (
     <S.Root>
-      <S.Header>
+      <S.Header to={`/day`} state={{ day, month, year }}>
         <h4>{showDate(day, month, year)}</h4>
         <h5>{getWeekDay(date)}</h5>
       </S.Header>

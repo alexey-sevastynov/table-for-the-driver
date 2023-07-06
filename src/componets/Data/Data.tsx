@@ -1,7 +1,6 @@
 import React from "react";
 
 import * as S from "./styles";
-import { tableHadeNames } from "../../constants";
 
 interface IDataProps {
   id: number;
@@ -26,7 +25,6 @@ const Data: React.FC<IDataProps> = ({
   status,
   amountWorks,
 }) => {
-  console.log(expenditure);
   return (
     <S.Root tabIndex={status} results={amountWorks} inlist={id}>
       <div className="id">
