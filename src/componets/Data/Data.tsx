@@ -26,6 +26,7 @@ const Data: React.FC<IDataProps> = ({
   status,
   amountWorks,
 }) => {
+  console.log(expenditure);
   return (
     <S.Root tabIndex={status} results={amountWorks} inlist={id}>
       <div className="id">

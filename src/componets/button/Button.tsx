@@ -8,7 +8,11 @@ interface IButtonProps {
 }
 
 const Button: React.FC<IButtonProps> = ({ label, isUnActive }) => {
-  return <S.Root itemScope={isUnActive}>{label}</S.Root>;
+  return (
+    <S.Root itemScope={isUnActive} type="submit">
+      {label}
+    </S.Root>
+  );
 };
 
 export default Button;

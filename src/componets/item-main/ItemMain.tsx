@@ -56,6 +56,7 @@ const ItemMain: React.FC<IItemMainProps> = ({ day, month, year }) => {
               km={item.km}
               income={item.income}
               status={item.status}
+              expenditure={item.expenditure}
               amountWorks={amountWorks}
             />
           );

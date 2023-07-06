@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 export const Root = styled.div`
   ${({ theme }) => css`
     display: flex;
-
     height: 100%;
 
     & .colum_2 {
@@ -77,13 +76,20 @@ export const Root = styled.div`
 
           & .items__input_date {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
+            & input {
+              margin-right: 20px;
+            }
           }
 
           & .items__input_data {
             margin-top: 6px;
             display: flex;
+            column-gap: 20px;
+            justify-content: space-between;
+
+            & select {
+              width: 300px;
+            }
           }
 
           & .items__input_route {
@@ -95,10 +101,11 @@ export const Root = styled.div`
 
           & .items__input_money {
             display: flex;
+            column-gap: 20px;
             margin-top: 6px;
 
             & input {
-              width: 200px;
+              width: 150px;
               border: none;
             }
 
@@ -108,7 +115,8 @@ export const Root = styled.div`
               }
             }
 
-            & .expenditure {
+            & .expenditure,
+            .description {
               & input {
                 background-color: ${theme.colors.debt};
               }
@@ -117,6 +125,7 @@ export const Root = styled.div`
 
           & .items__input_status {
             margin-top: 6px;
+            height: 70px;
 
             & .error {
               color: ${theme.colors.error};
@@ -127,6 +136,7 @@ export const Root = styled.div`
 
             & .items__input {
               position: relative;
+
               & input {
                 margin: 0;
                 width: 36px;
@@ -139,6 +149,8 @@ export const Root = styled.div`
                 position: relative;
                 width: 36px;
                 height: 36px;
+
+                margin-right: 20px;
 
                 & .paid__input,
                 .unknown__input,
@@ -227,11 +239,22 @@ export const Root = styled.div`
           height: 36px;
           width: 100px;
           padding: 0px 5px;
-          margin-right: 20px;
         }
 
         & .btns {
+          margin-top: 6px;
           float: right;
+
+          & .submit {
+            cursor: pointer;
+            height: 36px;
+            width: 120px;
+
+            border-radius: 10px;
+
+            color: ${theme.colors.white};
+            background-color: ${theme.colors.violet};
+          }
         }
       }
     }
@@ -263,8 +286,68 @@ export const Root = styled.div`
         & main {
           margin-left: 10px;
           margin-right: 10px;
-          padding: 60px 0px 20px 0px;
+          padding: 60px 10px 20px 10px;
           max-width: 765px;
+          & form {
+            & .items__input_date {
+              justify-content: space-between;
+              & input {
+                margin-right: 0px;
+              }
+            }
+
+            & .items__input_data {
+              flex-wrap: wrap;
+
+              justify-content: space-between;
+              & input {
+                width: calc(100vw - 50vw - 40px);
+              }
+              & select {
+                width: calc(100vw - 40px);
+              }
+            }
+
+            & .items__input_money {
+              justify-content: space-between;
+              flex-wrap: wrap;
+
+              & .income {
+                & input {
+                  width: calc(100vw - 50vw - 40px);
+                  background-color: ${theme.colors.paid};
+                }
+              }
+
+              & .expenditure {
+                & input {
+                  width: calc(100vw - 50vw - 40px);
+                  background-color: ${theme.colors.debt};
+                }
+              }
+
+              & .description {
+                & input {
+                  width: calc(100vw - 40px);
+                }
+              }
+            }
+
+            & .items__input_status {
+              & .items__input {
+                & .radio__block {
+                  display: flex;
+                  justify-content: space-between;
+                }
+                & .radio {
+                  margin-right: 0px;
+                }
+              }
+            }
+          }
+          & .btns {
+            margin-top: 36px;
+          }
         }
       }
     }

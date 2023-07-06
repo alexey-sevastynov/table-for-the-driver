@@ -12,47 +12,21 @@ import {
   fetchPostWorkArgs,
   fetchWorks,
 } from "../../redux/slices/worksSlice";
-
-// type Inputs = {
-//   day: number ;
-//   month: number;
-//   year: number;
-//   customer: string;
-//   hour: string;
-//   km: string;
-//   route: string;
-//   income: string;
-//   expenditure: string;
-//   description: string;
-//   status: string;
-// };
-// export type fetchPostWorkArgs = {
-//   id: number;
-//   day: number;
-//   month: number;
-//   year: number;
-//   customer: string;
-//   route?: string;
-//   hours: number;
-//   km: number;
-//   income?: number;
-//   expenditure?: number;
-//   description?: string;
-//   status: number;
-// };
+import InputBlock from "../../componets/input-block/InputBlock";
+import { Link } from "react-router-dom";
+import ButttonLink from "../../componets/button-link/ButtonLink";
 
 interface IAddProps {}
 
 const Add: React.FC<IAddProps> = () => {
   const dispatch = useAppDispatch();
-
   const { items } = useAppSelector((props) => props.works.jobs);
 
   const date = new Date();
 
   const {
     register,
-    formState: { errors, isValid },
+    formState: { errors },
     handleSubmit,
     reset,
   } = useForm<fetchPostWorkArgs>({
@@ -111,64 +85,45 @@ const Add: React.FC<IAddProps> = () => {
           <div className="overflow">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="items__input_date">
-                <div className="flex">
-                  <div className="input__block">
-                    <h5>date day *</h5>
-                    <input
-                      className={errors?.day ? "active_error" : ""}
-                      type="number"
-                      placeholder="Day..."
-                      {...register("day", {
-                        required: "day format: 1-31",
-                        min: { value: 1, message: "min day 1" },
-                        max: { value: 31, message: "max day 31" },
-                      })}
-                    />
-                    {errors?.day && (
-                      <h6 className="error">
-                        {errors?.day?.message || "day format: 1-31"}
-                      </h6>
-                    )}
-                  </div>
-
-                  <div className="input__block">
-                    <h5>date month *</h5>
-                    <input
-                      className={errors?.day ? "active_error" : ""}
-                      type="number"
-                      placeholder="month..."
-                      {...register("month", {
-                        required: "month format: 1-12",
-                        min: { value: 1, message: "min month 1" },
-                        max: { value: 12, message: "max month 12" },
-                      })}
-                    />
-                    {errors?.month && (
-                      <h6 className="error">
-                        {errors?.month?.message || "month format: 1-12"}
-                      </h6>
-                    )}
-                  </div>
-
-                  <div className="input__block">
-                    <h5>date year *</h5>
-                    <input
-                      className={errors?.year ? "active_error" : ""}
-                      type="number"
-                      placeholder="year..."
-                      {...register("year", {
-                        required: "incorrect year",
-                        min: { value: 2023, message: "min year 2023" },
-                        max: { value: 2100, message: "max year 2100" },
-                      })}
-                    />
-                    {errors?.year && (
-                      <h6 className="error">
-                        {errors?.year?.message || "incorrect year"}
-                      </h6>
-                    )}
-                  </div>
-                </div>
+                <InputBlock
+                  label="date day *"
+                  placeholder="Day..."
+                  inputType="number"
+                  errors={errors?.day}
+                  register={register}
+                  keyRegister="day"
+                  messageRequire="day format: 1-31"
+                  messageRequireMin="min day 1"
+                  valueMin={1}
+                  messageRequireMax="max day 31"
+                  valueMax={31}
+                />
+                <InputBlock
+                  label="date month *"
+                  placeholder="month..."
+                  inputType="number"
+                  errors={errors?.month}
+                  register={register}
+                  keyRegister="month"
+                  messageRequire="month format: 1-12"
+                  messageRequireMin="min day 1"
+                  valueMin={1}
+                  messageRequireMax="max day 12"
+                  valueMax={12}
+                />
+                <InputBlock
+                  label="date year *"
+                  placeholder="year..."
+                  inputType="number"
+                  errors={errors?.year}
+                  register={register}
+                  keyRegister="year"
+                  messageRequire="incorrect year"
+                  messageRequireMin="min year 2023"
+                  valueMin={2023}
+                  messageRequireMax="max year 2100"
+                  valueMax={2100}
+                />
               </div>
               <div className="items__input_data">
                 <div className="input__block">
@@ -180,116 +135,96 @@ const Add: React.FC<IAddProps> = () => {
                     <option value="Осеняя">Осеняя</option>
                   </select>
                 </div>
-                <div className="input__block">
-                  <h5>hour *</h5>
-                  <input
-                    className={errors?.hours ? "active_error" : ""}
-                    type="number"
-                    placeholder="hour..."
-                    {...register("hours", {
-                      required: "incorrect hour",
-                      min: { value: 1, message: "min hour 1" },
-                      max: { value: 24, message: "max hour 24" },
-                    })}
-                  />
-                  {errors?.hours && (
-                    <h6 className="error">
-                      {errors?.hours?.message || "incorrect hour"}
-                    </h6>
-                  )}
-                </div>
-                <div className="input__block">
-                  <h5>km *</h5>
-                  <input
-                    className={errors?.km ? "active_error" : ""}
-                    type="number"
-                    placeholder="km..."
-                    {...register("km", {
-                      required: "incorrect km",
-                      min: { value: 1, message: "min km 1" },
-                      max: { value: 10000, message: "max km 10000" },
-                    })}
-                  />
-                  {errors?.km && (
-                    <h6 className="error">
-                      {errors?.km?.message || "incorrect km"}
-                    </h6>
-                  )}
-                </div>
+
+                <InputBlock
+                  label="hour *"
+                  placeholder="hour..."
+                  inputType="number"
+                  errors={errors?.hours}
+                  register={register}
+                  keyRegister="hours"
+                  messageRequire="incorrect hour"
+                  messageRequireMin="min hour 1"
+                  valueMin={1}
+                  messageRequireMax="max hour 24"
+                  valueMax={24}
+                />
+
+                <InputBlock
+                  label="km *"
+                  placeholder="km..."
+                  inputType="number"
+                  errors={errors?.km}
+                  register={register}
+                  keyRegister="km"
+                  messageRequire="incorrect km"
+                  messageRequireMin="min km 1"
+                  valueMin={1}
+                  messageRequireMax="max km 10000"
+                  valueMax={10000}
+                />
               </div>
               <div className="items__input_route">
-                <div className="input__block">
-                  <h5>route </h5>
-                  <input
-                    className={errors?.route ? "active_error" : ""}
-                    type="text"
-                    placeholder="write route..."
-                    {...register("route", {
-                      required: false,
-                      maxLength: { value: 50, message: "max char 50" },
-                    })}
-                  />
-                  {errors?.km && (
-                    <h6 className="error">
-                      {errors?.route?.message || "incorrect route"}
-                    </h6>
-                  )}
-                </div>
+                <InputBlock
+                  label="route"
+                  placeholder="write route..."
+                  inputType="text"
+                  errors={errors?.route}
+                  register={register}
+                  keyRegister="route"
+                  require={false}
+                  messageRequire="incorrect route"
+                  messageMaxLength={"max char 50"}
+                  valueMaxLength={50}
+                />
               </div>
 
               <div className="items__input_money">
                 <div className="income input__block">
-                  <h5>income</h5>
-                  <input
-                    className={errors?.income ? "active_error" : ""}
-                    type="number"
+                  <InputBlock
+                    label="income"
                     placeholder="income..."
-                    {...register("income", {
-                      required: false,
-                      min: { value: 1, message: "min income 1" },
-                      max: { value: 100000, message: "max income 100000" },
-                    })}
+                    inputType="number"
+                    errors={errors?.income}
+                    register={register}
+                    keyRegister="income"
+                    require={false}
+                    messageRequire="incorrect income"
+                    messageRequireMin="min income 1"
+                    valueMin={1}
+                    messageRequireMax="max income 100000"
+                    valueMax={100000}
                   />
-                  {errors?.income && (
-                    <h6 className="error">
-                      {errors?.income?.message || "incorrect income"}
-                    </h6>
-                  )}
                 </div>
                 <div className="expenditure input__block">
-                  <h5>expenditure</h5>
-                  <input
-                    className={errors?.expenditure ? "active_error" : ""}
-                    type="number"
+                  <InputBlock
+                    label="expenditure"
                     placeholder="expenditure..."
-                    {...register("expenditure", {
-                      required: false,
-                      min: { value: 1, message: "min expenditure 1" },
-                      max: { value: 100000, message: "max expenditure 100000" },
-                    })}
+                    inputType="number"
+                    errors={errors?.expenditure}
+                    register={register}
+                    keyRegister="expenditure"
+                    require={false}
+                    messageRequire="incorrect expenditure"
+                    messageRequireMin="min expenditure 1"
+                    valueMin={1}
+                    messageRequireMax="max expenditure 100000"
+                    valueMax={100000}
                   />
-                  {errors?.expenditure && (
-                    <h6 className="error">
-                      {errors?.expenditure?.message || "incorrect expenditure"}
-                    </h6>
-                  )}
                 </div>
-                <div className="expenditure input__block">
-                  <h5>description</h5>
-                  <input
-                    className={errors?.description ? "active_error" : ""}
-                    type="number"
+                <div className="description input__block">
+                  <InputBlock
+                    label="description"
                     placeholder="description..."
-                    {...register("description", {
-                      required: false,
-                      maxLength: { value: 20, message: "max char 20" },
-                    })}
+                    inputType="text"
+                    errors={errors?.description}
+                    register={register}
+                    keyRegister="description"
+                    require={false}
+                    messageRequire="incorrect description"
+                    messageMaxLength={"max char 20"}
+                    valueMaxLength={20}
                   />
-                  {errors?.description && (
-                    <h6 className="error">
-                      {errors?.description?.message || "incorrect description"}
-                    </h6>
-                  )}
                 </div>
               </div>
 
@@ -356,11 +291,11 @@ const Add: React.FC<IAddProps> = () => {
                 )}
               </div>
               <div className="btns">
-                <Button label="back" isUnActive />
-                <Button label="add item" />
-                {/* disabled={!isValid} */}
-                <input type="submit" />
-                {errors?.day && <p style={{ color: "black" }} />}
+                <Link to="/">
+                  <Button label="back" isUnActive />
+                </Link>
+
+                <Button label="ADD" />
               </div>
             </form>
           </div>
