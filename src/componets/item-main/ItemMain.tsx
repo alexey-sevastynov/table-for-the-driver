@@ -6,8 +6,14 @@ import Data from "../Data/Data";
 
 import { showDate } from "../../helpers/showDate";
 import { getWeekDay } from "../../helpers/getWeekDay";
-import { useAppSelector } from "../../redux/hook";
-import { IWork } from "../../redux/slices/worksSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import {
+  IWork,
+  deleteDayWork,
+  fetchWorks,
+} from "../../redux/slices/worksSlice";
+import { Icon } from "../Icon";
+import { Link } from "react-router-dom";
 
 interface IItemMainProps {
   day: number;
@@ -16,14 +22,37 @@ interface IItemMainProps {
 }
 
 const ItemMain: React.FC<IItemMainProps> = ({ day, month, year }) => {
+  const dispatch = useAppDispatch();
   const items = useAppSelector((props) => props.works.jobs.items);
   const date = new Date(year, month - 1, day);
 
+  const removeDay = async (day: number, month: number, year: number) => {
+    console.log(day, month, year);
+    if (confirm("are you really want to delete work day?")) {
+      await dispatch(deleteDayWork({ day, month, year })).finally(() =>
+        dispatch(fetchWorks())
+      );
+    }
+  };
+
   return (
     <S.Root>
-      <S.Header to={`/day`} state={{ day, month, year }}>
-        <h4>{showDate(day, month, year)}</h4>
+      <S.Header>
+        <Link to={`/day`} state={{ day, month, year }}>
+          <h4>{showDate(day, month, year)}</h4>
+        </Link>
+
         <h5>{getWeekDay(date)}</h5>
+
+        <Icon
+          iconName="close"
+          className="close"
+          onClick={() => removeDay(day, month, year)}
+        />
+
+        <Link to={"/edit"} state={{ day, month, year }} className="edit__link">
+          <Icon iconName="edit" className="edit" />
+        </Link>
       </S.Header>
 
       <S.TableHead>
@@ -55,7 +84,7 @@ const ItemMain: React.FC<IItemMainProps> = ({ day, month, year }) => {
               hours={item.hours}
               km={item.km}
               income={item.income}
-              status={item.status}
+              status={Number(item.status)}
               expenditure={item.expenditure}
               amountWorks={amountWorks}
             />

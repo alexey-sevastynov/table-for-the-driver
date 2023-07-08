@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-export const Root = styled.aside`
+export const Root = styled(Link)`
   ${({ theme }) => css`
     display: flex;
     flex-direction: column;

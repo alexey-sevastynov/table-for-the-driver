@@ -34,6 +34,12 @@ export type fetchPostWorkArgs = {
   status: number;
 };
 
+type deleteDayWorkArgs = {
+  day: number;
+  month: number;
+  year: number;
+};
+
 export const fetchWorks = createAsyncThunk<IWork[]>(
   "works/fetchWorks",
   async () => {
@@ -47,6 +53,70 @@ export const fetchPostWork = createAsyncThunk<IWork, fetchPostWorkArgs>(
   "workPost/fetchWorks",
   async (params) => {
     const { data } = await axios.post(`${API_URL}jobs`, params);
+
+    return data;
+  }
+);
+
+export const deleteWork = createAsyncThunk<IWork, { id: string }>(
+  "workDelete/fetchWorks",
+  async (params) => {
+    const { id } = params;
+    console.log(id);
+    const { data } = await axios.delete(`${API_URL}jobs/${id}`);
+
+    return data;
+  }
+);
+
+export const deleteDayWork = createAsyncThunk<IWork, deleteDayWorkArgs>(
+  "workDeleteDay/fetchWorks",
+  async (params) => {
+    const { day, month, year } = params;
+
+    const { data } = await axios.delete(
+      `${API_URL}jobs/allDay/${day}/${month}/${year}`
+    );
+
+    return data;
+  }
+);
+
+export const editWork = createAsyncThunk<IWork, IWork>(
+  "workEditDay/fetchWorks",
+  async (params) => {
+    const {
+      _id,
+      id,
+      day,
+      month,
+      year,
+      customer,
+      route,
+      hours,
+      km,
+      income,
+      expenditure,
+      description,
+      status,
+    } = params;
+
+    console.log(params);
+
+    const { data } = await axios.patch(`${API_URL}jobs/${_id}`, {
+      id,
+      day,
+      month,
+      year,
+      customer,
+      route,
+      hours,
+      km,
+      income,
+      expenditure,
+      description,
+      status,
+    });
 
     return data;
   }
@@ -96,6 +166,36 @@ const worksSlice = createSlice({
     });
     builder.addCase(fetchPostWork.rejected, (state) => {
       state.jobs.items = [];
+      state.jobs.status = "error";
+    });
+
+    builder.addCase(deleteDayWork.pending, (state) => {
+      state.jobs.status = "loading";
+    });
+    builder.addCase(deleteDayWork.fulfilled, (state, action) => {
+      state.jobs.status = "loaded";
+    });
+    builder.addCase(deleteDayWork.rejected, (state) => {
+      state.jobs.status = "error";
+    });
+
+    builder.addCase(deleteWork.pending, (state) => {
+      state.jobs.status = "loading";
+    });
+    builder.addCase(deleteWork.fulfilled, (state, action) => {
+      state.jobs.status = "loaded";
+    });
+    builder.addCase(deleteWork.rejected, (state) => {
+      state.jobs.status = "error";
+    });
+
+    builder.addCase(editWork.pending, (state) => {
+      state.jobs.status = "loading";
+    });
+    builder.addCase(editWork.fulfilled, (state, action) => {
+      state.jobs.status = "loaded";
+    });
+    builder.addCase(editWork.rejected, (state) => {
       state.jobs.status = "error";
     });
   },

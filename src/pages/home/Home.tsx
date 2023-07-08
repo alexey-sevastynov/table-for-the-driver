@@ -10,17 +10,29 @@ import { IWork, fetchWorks } from "../../redux/slices/worksSlice";
 import { showCurrentDate } from "../../helpers/showCurrentDate";
 
 import { RotatingLines } from "react-loader-spinner";
+import { useLocation } from "react-router-dom";
 
 interface IHomeProps {}
 
 const Home: React.FC<IHomeProps> = () => {
+  const location = useLocation();
+
+  const stateLocation = location.state;
+
   const dispatch = useAppDispatch();
   const { items, status } = useAppSelector((props) => props.works.jobs);
 
   const date = new Date();
 
-  const currentMonth = date.getMonth() + 1;
-  const currentYear = date.getFullYear();
+  const currentMonth =
+    stateLocation === null ? date.getMonth() + 1 : stateLocation.month;
+  const currentYear =
+    stateLocation === null ? date.getFullYear() : stateLocation.year;
+
+  const showData =
+    stateLocation === null
+      ? showCurrentDate(date.getMonth(), date.getFullYear())
+      : showCurrentDate(stateLocation.month - 1, stateLocation.year);
 
   const apiWorks = async () => {
     await dispatch(fetchWorks());
@@ -31,12 +43,13 @@ const Home: React.FC<IHomeProps> = () => {
   }, []);
 
   const dataOnWorks = items
-    .filter(
-      (item: IWork) =>
+    .filter((item: IWork) => {
+      return (
         currentMonth === item.month &&
         item.id === 1 &&
         currentYear === item.year
-    )
+      );
+    })
     .sort((a: IWork, b: IWork) => (a.day > b.day ? 1 : -1))
     .map((item: IWork) => (
       <ItemMain
@@ -67,7 +80,7 @@ const Home: React.FC<IHomeProps> = () => {
         <h2>Hello, world!</h2>
         <main>
           <div className="header">
-            <h3>{showCurrentDate(date.getMonth(), date.getFullYear())}</h3>
+            <h3>{showData}</h3>
             <div className="header__input">
               <input type="text" placeholder="find data..." />
               <Icon iconName="find" />

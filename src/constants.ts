@@ -21,9 +21,10 @@ export const tableHadeNames = [
 
 export const ROUTES = {
   HOME: "/",
-  MOUNTHS: "/mounths",
+  MOUNTHS: "/months",
   ADD: "/add",
   DAY: "/day",
+  EDIT: "/edit",
 };
 
 export const dayNames = [

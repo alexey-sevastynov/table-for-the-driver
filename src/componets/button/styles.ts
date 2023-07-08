@@ -13,6 +13,6 @@ export const Root = styled.button`
     color: ${(props) =>
       props.itemScope ? theme.colors.violet : theme.colors.white};
     background-color: ${(props) =>
-      props.itemScope ? theme.colors.white : theme.colors.violet};
+      props.itemScope ? "unset" : theme.colors.violet};
   `}
 `;

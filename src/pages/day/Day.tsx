@@ -50,7 +50,7 @@ const Day: React.FC<IDayProps> = () => {
                   hours={item.hours}
                   km={item.km}
                   income={item.income}
-                  status={item.status}
+                  status={Number(item.status)}
                   expenditure={item.expenditure}
                   description={item.description}
                 />

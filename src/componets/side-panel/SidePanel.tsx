@@ -14,8 +14,8 @@ const SidePanel: React.FC<ISidePanelProps> = () => {
       <h1>Dashboard</h1>
       <nav className="buttons">
         <div>
-          <ButttonLink icon="home" title="current mounth" link="/" />
-          <ButttonLink icon="home" title="mounths" link="/mounths" />
+          <ButttonLink icon="home" title="current month" link="/" />
+          <ButttonLink icon="home" title="months" link="/months" />
         </div>
 
         <div>

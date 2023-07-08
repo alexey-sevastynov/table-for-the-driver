@@ -6,6 +6,7 @@ import Home from "./pages/home/Home";
 import Mounths from "./pages/mounths/Mounths";
 import Add from "./pages/add/Add";
 import Day from "./pages/day/Day";
+import Edit from "./pages/edit/Edit";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path={ROUTES.MOUNTHS} element={<Mounths />} />
         <Route path={ROUTES.ADD} element={<Add />} />
         <Route path={ROUTES.DAY} element={<Day />} />
+        <Route path={ROUTES.EDIT} element={<Edit />} />
       </Routes>
     </div>
   );

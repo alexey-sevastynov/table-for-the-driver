@@ -7,6 +7,21 @@ export const Root = styled.div`
 
     margin-bottom: 10px;
 
+    &:hover {
+      //id svg
+      & #active {
+        opacity: 1;
+        transition: all 0.2s ease;
+      }
+    }
+    &:hover {
+      //id svg
+      & #edit {
+        opacity: 1;
+        transition: all 0.2s ease;
+      }
+    }
+
     & .id,
     .customer,
     .route,
@@ -95,8 +110,9 @@ export const Root = styled.div`
   `}
 `;
 
-export const Header = styled(Link)`
+export const Header = styled.div`
   ${({ theme }) => css`
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -104,11 +120,45 @@ export const Header = styled(Link)`
     & h4 {
       font-weight: 700;
       padding-right: 6px;
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
-    &:hover {
-      text-decoration: underline;
+    & .edit__link{
+              position: absolute;
+              top: 0;
+              right: 40px;
+              cursor: pointer;
+                & .edit {
+                    opacity: 0;
+
+                &#edit:hover  {
+ 
+                 & rect{
+                     fill: #737373;
+                     fill-opacity: 0.2;
+             }        
+          }
+       }
     }
+
+    
+
+    & .close {
+      position: absolute;
+      right: 10px;
+      cursor: pointer;
+      opacity: 0;
+
+       &#active:hover  {
+       
+           & rect{
+              fill: #737373;
+              fill-opacity: 0.2;
+           }        
+      }
+
   `}
 `;
 export const TableHead = styled.div`
