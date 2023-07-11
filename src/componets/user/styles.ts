@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const Root = styled.div`
-  ${({ theme }) => css`
+  ${() => css`
     position: absolute;
     bottom: 30px;
     left: 30px;

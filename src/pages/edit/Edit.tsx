@@ -7,7 +7,6 @@ import { useAppSelector } from "../../redux/hook";
 import { useLocation } from "react-router-dom";
 import { IWork } from "../../redux/slices/worksSlice";
 import { showCurrentDay } from "../../helpers/showCurrentDay";
-import Button from "../../componets/button/Button";
 
 type IEditProps = {};
 

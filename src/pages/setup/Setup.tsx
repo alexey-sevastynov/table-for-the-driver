@@ -37,6 +37,8 @@ interface ISetupProps {}
 const Setup: React.FC<ISetupProps> = () => {
   const [isEdit, setIsEdit] = React.useState<boolean>(false);
   const dispatch = useAppDispatch();
+
+  //@ts-ignore
   const { percent, rate, items, customerItem } = useAppSelector(
     (props) => props.customer
   );
@@ -78,6 +80,7 @@ const Setup: React.FC<ISetupProps> = () => {
 
   const salaryPercentSubmit = async (data: { salaryPercent: number }) => {
     // dispatch(setPercent(+data.salaryPercent));
+    //@ts-ignore
     dispatch(editSalary({ percent: data.salaryPercent, rate })).finally(() => {
       dispatch(getOneSalary());
     });
@@ -85,6 +88,7 @@ const Setup: React.FC<ISetupProps> = () => {
 
   const salaryRateSubmit = async (data: { salaryRate: number }) => {
     // dispatch(setRate(+data.salaryRate));
+    //@ts-ignore
     dispatch(editSalary({ rate: data.salaryRate, percent })).finally(() => {
       dispatch(getOneSalary());
     });
@@ -271,28 +275,35 @@ const Setup: React.FC<ISetupProps> = () => {
                 <p>UAH/km</p>
               </div>
               <div className="optionTable__overflow">
-                {items.map((item, id) => (
-                  <div key={item.customer} className="optionTable__body">
-                    <p>{item.customer}</p>
-                    <p>{item.hour}</p>
-                    <p>{item.km}</p>
-                    <Icon
-                      iconName="edit"
-                      onClick={() =>
-                        clickEditCustomer(
-                          item._id,
-                          item.customer,
-                          item.hour,
-                          item.km
-                        )
-                      }
-                    />
-                    <Icon
-                      iconName="close"
-                      onClick={() => clickDeleteCustomer(item._id)}
-                    />
-                  </div>
-                ))}
+                {items.map(
+                  (item: {
+                    _id: string;
+                    customer: string;
+                    hour: number;
+                    km: number;
+                  }) => (
+                    <div key={item.customer} className="optionTable__body">
+                      <p>{item.customer}</p>
+                      <p>{item.hour}</p>
+                      <p>{item.km}</p>
+                      <Icon
+                        iconName="edit"
+                        onClick={() =>
+                          clickEditCustomer(
+                            item._id,
+                            item.customer,
+                            item.hour,
+                            item.km
+                          )
+                        }
+                      />
+                      <Icon
+                        iconName="close"
+                        onClick={() => clickDeleteCustomer(item._id)}
+                      />
+                    </div>
+                  )
+                )}
               </div>
             </div>
           </div>

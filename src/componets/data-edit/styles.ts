@@ -7,14 +7,17 @@ export const Root = styled.div`
 
     padding: 10px;
 
-    background-color: ${(props) =>
+    background-color: ${(props: any) =>
       (props.tabIndex === 1 || props.tabIndex === "1") && theme.colors.paid};
 
-    background-color: ${(props) => props.tabIndex === 2 && theme.colors.uknown};
+    background-color: ${(props: any) =>
+      props.tabIndex === 2 && theme.colors.uknown};
 
-    background-color: ${(props) => props.tabIndex === 3 && theme.colors.debt};
+    background-color: ${(props: any) =>
+      props.tabIndex === 3 && theme.colors.debt};
 
-    background-color: ${(props) => props.tabIndex === 4 && theme.colors.other};
+    background-color: ${(props: any) =>
+      props.tabIndex === 4 && theme.colors.other};
     form {
       width: 100%;
       & .row__id,

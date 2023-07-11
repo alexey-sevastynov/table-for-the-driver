@@ -26,7 +26,7 @@ const DataDay: React.FC<IDataDayProps> = ({
   description,
 }) => {
   return (
-    <S.Root tabIndex={status}>
+    <S.Root inlist={status}>
       <div className="col__id">
         <p>{id}</p>
       </div>

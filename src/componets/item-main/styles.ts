@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 export const Root = styled.div`
-  ${({ theme }) => css`
+  ${() => css`
     width: 100%;
 
     margin-bottom: 10px;
@@ -111,7 +110,7 @@ export const Root = styled.div`
 `;
 
 export const Header = styled.div`
-  ${({ theme }) => css`
+  ${() => css`
     position: relative;
     display: flex;
     justify-content: center;
@@ -162,7 +161,7 @@ export const Header = styled.div`
   `}
 `;
 export const TableHead = styled.div`
-  ${({ theme }) => css`
+  ${() => css`
     height: 28px;
     display: flex;
   `}

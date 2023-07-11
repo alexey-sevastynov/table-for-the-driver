@@ -24,6 +24,7 @@ const ButttonLink: React.FC<IButttonLinkProps> = ({
   return (
     <S.Root
       to={link}
+      //@ts-ignore
       style={({ isActive }) => {
         return {
           backgroundColor: isActive ? theme.colors.violet : null,

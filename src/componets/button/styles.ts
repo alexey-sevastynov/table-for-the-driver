@@ -8,11 +8,14 @@ export const Root = styled.button`
 
     border-radius: 10px;
 
-    border: ${(props) => (props.itemScope ? "none" : "")};
+    border: unset;
 
-    color: ${(props) =>
-      props.itemScope ? theme.colors.violet : theme.colors.white};
-    background-color: ${(props) =>
-      props.itemScope ? "unset" : theme.colors.violet};
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.violet};
+
+    &.unActive {
+      background-color: ${theme.colors.white};
+      color: ${theme.colors.violet};
+    }
   `}
 `;

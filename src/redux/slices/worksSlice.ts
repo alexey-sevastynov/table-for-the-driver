@@ -1,4 +1,4 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const API_URL = "https://api-table-for-the-driver.vercel.app/";
@@ -172,7 +172,7 @@ const worksSlice = createSlice({
     builder.addCase(deleteDayWork.pending, (state) => {
       state.jobs.status = "loading";
     });
-    builder.addCase(deleteDayWork.fulfilled, (state, action) => {
+    builder.addCase(deleteDayWork.fulfilled, (state) => {
       state.jobs.status = "loaded";
     });
     builder.addCase(deleteDayWork.rejected, (state) => {
@@ -182,7 +182,7 @@ const worksSlice = createSlice({
     builder.addCase(deleteWork.pending, (state) => {
       state.jobs.status = "loading";
     });
-    builder.addCase(deleteWork.fulfilled, (state, action) => {
+    builder.addCase(deleteWork.fulfilled, (state) => {
       state.jobs.status = "loaded";
     });
     builder.addCase(deleteWork.rejected, (state) => {
@@ -192,7 +192,7 @@ const worksSlice = createSlice({
     builder.addCase(editWork.pending, (state) => {
       state.jobs.status = "loading";
     });
-    builder.addCase(editWork.fulfilled, (state, action) => {
+    builder.addCase(editWork.fulfilled, (state) => {
       state.jobs.status = "loaded";
     });
     builder.addCase(editWork.rejected, (state) => {

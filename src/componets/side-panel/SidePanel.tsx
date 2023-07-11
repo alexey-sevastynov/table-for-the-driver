@@ -4,7 +4,6 @@ import * as S from "./styles";
 
 import ButttonLink from "../button-link/ButtonLink";
 import User from "../user/User";
-import { Link, NavLink } from "react-router-dom";
 
 interface ISidePanelProps {}
 

@@ -50,7 +50,7 @@ const Mounths: React.FC<IMounthsProps> = () => {
   //   ]
   // ]
 
-  const getArrMonths = getListUniqYears.map((year, id) =>
+  const getArrMonths = getListUniqYears.map((_, id) =>
     newObjUniqArrays[id].map((item: NewItemsTypes) => item.month)
   ); // out =>
   // [
@@ -79,6 +79,7 @@ const Mounths: React.FC<IMounthsProps> = () => {
         <main>
           <h3>My working months</h3>
           <div className="overflow">
+            {/* @ts-ignore */}
             {newItems.map((item: NewItemsTypes) => {
               const showMounths = item.month
                 ?.filter((el, id) => item?.month?.indexOf(el) === id)
