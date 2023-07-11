@@ -13,7 +13,7 @@ interface IItemMounthProps {
 const ItemMounth: React.FC<IItemMounthProps> = ({ year, month }) => {
   console.log(month);
   return (
-    <S.Root to="/" state={{ year, month }} key={month}>
+    <S.Root to="/table-for-the-driver/" state={{ year, month }} key={month}>
       <div className={`icon__${month}`}>
         <h1>{showTwoCharMonth(showNameMonth(month - 1))}</h1>
       </div>

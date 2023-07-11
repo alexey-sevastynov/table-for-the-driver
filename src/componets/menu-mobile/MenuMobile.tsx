@@ -12,7 +12,11 @@ const MenuMobile: React.FC<IMenuMobileProps> = () => {
     <S.Root>
       <nav className="buttons">
         <div>
-          <ButttonLink icon="home" title="current month" link="/" />
+          <ButttonLink
+            icon="home"
+            title="current month"
+            link="/table-for-the-driver/"
+          />
           <ButttonLink icon="home" title="months" link="/months" />
         </div>
 

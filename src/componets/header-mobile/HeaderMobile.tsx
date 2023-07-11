@@ -15,9 +15,13 @@ const HeaderMobile: React.FC<IHeaderMobileProps> = () => {
     setToggleMenu((toggleMenu) => !toggleMenu);
   };
 
+  const clickCloseMenu = () => {
+    setToggleMenu(false);
+  };
+
   return (
     <S.Root className={toggleMenu ? "active" : ""}>
-      <Link to={"/"}>
+      <Link to={"/table-for-the-driver/"} onClick={clickCloseMenu}>
         <h1>Dashboard</h1>
       </Link>
 
