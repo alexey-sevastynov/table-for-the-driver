@@ -13,5 +13,18 @@ export default {
     other: "#EEEEEE",
 
     error: "red",
+
+    january: "#7BE7FF",
+    february: "#7BA8FF",
+    march: "#7BFFD7",
+    april: "#7BFFA0",
+    may: "#85FF7B",
+    june: "#ADFF7B",
+    july: "#E5FF7B",
+    august: "#ECFF7B",
+    september: "#FFEA7B",
+    october: "#FFB27B",
+    november: "#FFAA7B",
+    december: "#DD7BFF",
   },
 };

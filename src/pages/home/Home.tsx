@@ -31,7 +31,10 @@ const Home: React.FC<IHomeProps> = () => {
 
   const showData =
     stateLocation === null
-      ? showCurrentDate(date.getMonth(), date.getFullYear())
+      ? `${date.getDate()} ${showCurrentDate(
+          date.getMonth(),
+          date.getFullYear()
+        )}`
       : showCurrentDate(stateLocation.month - 1, stateLocation.year);
 
   const apiWorks = async () => {

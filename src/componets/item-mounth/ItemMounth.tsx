@@ -2,6 +2,8 @@ import React from "react";
 
 import * as S from "./styles";
 import { showCurrentDate } from "../../helpers/showCurrentDate";
+import { showTwoCharMonth } from "../../helpers/showTwoCharMonth";
+import { showNameMonth } from "../../helpers/showNameMonth";
 
 interface IItemMounthProps {
   year: number;
@@ -9,10 +11,11 @@ interface IItemMounthProps {
 }
 
 const ItemMounth: React.FC<IItemMounthProps> = ({ year, month }) => {
+  console.log(month);
   return (
     <S.Root to="/" state={{ year, month }} key={month}>
-      <div className="icon">
-        <h1>JL</h1>
+      <div className={`icon__${month}`}>
+        <h1>{showTwoCharMonth(showNameMonth(month - 1))}</h1>
       </div>
       <h5>{showCurrentDate(month - 1, year)}</h5>
     </S.Root>

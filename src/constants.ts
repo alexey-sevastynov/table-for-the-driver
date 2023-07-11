@@ -25,6 +25,7 @@ export const ROUTES = {
   ADD: "/add",
   DAY: "/day",
   EDIT: "/edit",
+  SETUP: "/setup",
 };
 
 export const dayNames = [

@@ -7,6 +7,7 @@ import Mounths from "./pages/mounths/Mounths";
 import Add from "./pages/add/Add";
 import Day from "./pages/day/Day";
 import Edit from "./pages/edit/Edit";
+import Setup from "./pages/setup/Setup";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path={ROUTES.ADD} element={<Add />} />
         <Route path={ROUTES.DAY} element={<Day />} />
         <Route path={ROUTES.EDIT} element={<Edit />} />
+        <Route path={ROUTES.SETUP} element={<Setup />} />
       </Routes>
     </div>
   );

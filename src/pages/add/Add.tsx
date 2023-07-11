@@ -21,6 +21,9 @@ interface IAddProps {}
 const Add: React.FC<IAddProps> = () => {
   const dispatch = useAppDispatch();
   const { items } = useAppSelector((props) => props.works.jobs);
+  const { items: options } = useAppSelector((props) => props.customer);
+
+  console.log(options);
 
   const date = new Date();
 
@@ -32,7 +35,7 @@ const Add: React.FC<IAddProps> = () => {
   } = useForm<fetchPostWorkArgs>({
     mode: "onBlur",
     defaultValues: {
-      day: date.getDay() + 2,
+      day: date.getDate(),
       month: date.getMonth() + 1,
       year: date.getFullYear(),
     },
@@ -129,10 +132,11 @@ const Add: React.FC<IAddProps> = () => {
                 <div className="input__block">
                   <h5>customer *</h5>
                   <select {...register("customer")}>
-                    <option value="Инватех">Инватех</option>
-                    <option value="УкрЗапчасть">УкрЗапчасть</option>
-                    <option value="Енергитическая">Енергитическая</option>
-                    <option value="Осеняя">Осеняя</option>
+                    {options.map((item) => (
+                      <option key={item._id} value={item.customer}>
+                        {item.customer}
+                      </option>
+                    ))}
                   </select>
                 </div>
 

@@ -8,8 +8,8 @@ export const showCurrentDay = (day: number, month: number, year: number) => {
   if (newMonth === 1)
     return `${day} February, ${getWeekDay(date)} ${year} year`;
   if (newMonth === 2) return `${day} March, ${getWeekDay(date)} ${year} year`;
-  if (newMonth === 3) return `${day} May, ${getWeekDay(date)} ${year} year`;
-  if (newMonth === 4) return `${day} April, ${getWeekDay(date)} ${year} year`;
+  if (newMonth === 3) return `${day} April, ${getWeekDay(date)} ${year} year`;
+  if (newMonth === 4) return `${day} May, ${getWeekDay(date)} ${year} year`;
   if (newMonth === 5) return `${day} June, ${getWeekDay(date)} ${year} year`;
   if (newMonth === 6) return `${day} July, ${getWeekDay(date)} ${year} year`;
   if (newMonth === 7) return `${day} August, ${getWeekDay(date)} ${year} year`;

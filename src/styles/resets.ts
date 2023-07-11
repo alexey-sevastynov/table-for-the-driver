@@ -95,6 +95,7 @@ h5 {
 p {
     font-size: 14px;
     margin: 0;
+    color: ${(props) => props.theme.colors.grey};
 }
 
 button{
