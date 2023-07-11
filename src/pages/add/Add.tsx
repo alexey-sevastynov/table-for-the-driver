@@ -294,7 +294,7 @@ const Add: React.FC<IAddProps> = () => {
                 )}
               </div>
               <div className="btns">
-                <Link to="table-for-the-driver/">
+                <Link to="/">
                   <Button label="back" isUnActive />
                 </Link>
 

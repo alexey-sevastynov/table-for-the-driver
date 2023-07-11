@@ -14,7 +14,7 @@ export const Root = styled.button`
     background-color: ${theme.colors.violet};
 
     &.unActive {
-      background-color: ${theme.colors.white};
+      background-color: unset;
       color: ${theme.colors.violet};
     }
   `}

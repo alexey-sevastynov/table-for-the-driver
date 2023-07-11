@@ -20,12 +20,12 @@ export const tableHadeNames = [
 ];
 
 export const ROUTES = {
-  HOME: "table-for-the-driver/",
-  MOUNTHS: "table-for-the-driver/months",
-  ADD: "table-for-the-driver/add",
-  DAY: "table-for-the-driver/day",
-  EDIT: "table-for-the-driver/edit",
-  SETUP: "table-for-the-driver/setup",
+  HOME: "/",
+  MOUNTHS: "/months",
+  ADD: "/add",
+  DAY: "/day",
+  EDIT: "/edit",
+  SETUP: "/setup",
 };
 
 export const dayNames = [

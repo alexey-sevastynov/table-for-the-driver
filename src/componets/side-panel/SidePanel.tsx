@@ -13,29 +13,13 @@ const SidePanel: React.FC<ISidePanelProps> = () => {
       <h1>Dashboard</h1>
       <nav className="buttons">
         <div>
-          <ButttonLink
-            icon="home"
-            title="current month"
-            link="table-for-the-driver/"
-          />
-          <ButttonLink
-            icon="home"
-            title="months"
-            link="table-for-the-driver/months"
-          />
-          <ButttonLink
-            icon="home"
-            title="setup"
-            link="table-for-the-driver/setup"
-          />
+          <ButttonLink icon="home" title="current month" link="/" />
+          <ButttonLink icon="home" title="months" link="/months" />
+          <ButttonLink icon="home" title="setup" link="/setup" />
         </div>
 
         <div>
-          <ButttonLink
-            icon="home"
-            title="add item"
-            link="table-for-the-driver/add"
-          />
+          <ButttonLink icon="home" title="add item" link="/add" />
         </div>
       </nav>
 

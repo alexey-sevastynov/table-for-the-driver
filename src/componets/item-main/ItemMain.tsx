@@ -38,7 +38,7 @@ const ItemMain: React.FC<IItemMainProps> = ({ day, month, year }) => {
   return (
     <S.Root>
       <S.Header>
-        <Link to={`table-for-the-driver/day`} state={{ day, month, year }}>
+        <Link to={`/day`} state={{ day, month, year }}>
           <h4>{showDate(day, month, year)}</h4>
         </Link>
 
@@ -50,11 +50,7 @@ const ItemMain: React.FC<IItemMainProps> = ({ day, month, year }) => {
           onClick={() => removeDay(day, month, year)}
         />
 
-        <Link
-          to={"table-for-the-driver/edit"}
-          state={{ day, month, year }}
-          className="edit__link"
-        >
+        <Link to={"/edit"} state={{ day, month, year }} className="edit__link">
           <Icon iconName="edit" className="edit" />
         </Link>
       </S.Header>
