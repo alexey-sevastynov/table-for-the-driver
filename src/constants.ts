@@ -20,7 +20,7 @@ export const tableHadeNames = [
 ];
 
 export const ROUTES = {
-  HOME: "table-for-the-driver/",
+  HOME: "/",
   MOUNTHS: "/months",
   ADD: "/add",
   DAY: "/day",
