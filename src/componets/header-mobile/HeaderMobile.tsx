@@ -17,7 +17,7 @@ const HeaderMobile: React.FC<IHeaderMobileProps> = () => {
 
   return (
     <S.Root className={toggleMenu ? "active" : ""}>
-      <Link to={"/"}>
+      <Link to={"table-for-the-driver/"}>
         <h1>Dashboard</h1>
       </Link>
 
