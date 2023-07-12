@@ -97,7 +97,10 @@ export const Root = styled.div`
 
               overflow-y: scroll;
             }
-
+            &__overflow::-webkit-scrollbar {
+              width: 0;
+              height: 0;
+            }
             &__body {
               line-height: 36px;
             }
@@ -166,6 +169,8 @@ export const Root = styled.div`
           margin-right: 10px;
           padding: 60px 10px 20px 10px;
           max-width: 765px;
+
+          min-height: calc(100vh - 120px - 36px);
 
           & .overflow {
             & .addData {

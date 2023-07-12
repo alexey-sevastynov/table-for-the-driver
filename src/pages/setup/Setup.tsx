@@ -170,7 +170,7 @@ const Setup: React.FC<ISetupProps> = () => {
               className="addData"
             >
               <p className="addData__description">Salary % day:</p>
-              <p className="addData__data">20 %</p>
+              <p className="addData__data">{percent} %</p>
               <div className="addData__inputBlock">
                 <input
                   type="number"
@@ -194,7 +194,7 @@ const Setup: React.FC<ISetupProps> = () => {
               onSubmit={forms.salaryRate.handleSubmit(salaryRateSubmit)}
             >
               <p className="addData__description">Salary UAH day:</p>
-              <p className="addData__data">300 UAH</p>
+              <p className="addData__data">{rate} UAH</p>
               <div className="addData__inputBlock">
                 <input
                   type="number"

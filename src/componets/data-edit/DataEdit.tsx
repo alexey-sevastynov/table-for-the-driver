@@ -9,7 +9,7 @@ import {
   fetchWorks,
 } from "../../redux/slices/worksSlice";
 import Button from "../button/Button";
-import { useAppDispatch } from "../../redux/hook";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
 
 interface IDataEditProps {
   id: number;
@@ -37,6 +37,7 @@ const DataEdit: React.FC<IDataEditProps> = ({
   description,
 }) => {
   const dispatch = useAppDispatch();
+  const { items: options } = useAppSelector((props) => props.customer);
 
   const {
     register,
@@ -100,10 +101,11 @@ const DataEdit: React.FC<IDataEditProps> = ({
               maxLength: { value: 40, message: "max 40 char" },
             })}
           >
-            <option value="Инватех">Инватех</option>
-            <option value="УкрЗапчасть">УкрЗапчасть</option>
-            <option value="Енергитическая">Енергитическая</option>
-            <option value="Осеняя">Осеняя</option>
+            {options.map((item) => (
+              <option key={item._id} value={item.customer}>
+                {item.customer}
+              </option>
+            ))}
           </select>
         </div>
         {<h6>{errors.customer?.message}</h6>}

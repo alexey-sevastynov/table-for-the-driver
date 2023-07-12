@@ -16,6 +16,9 @@ interface IInputBlockProps {
 
   messageMaxLength?: string;
   valueMaxLength?: number;
+
+  valueAsNumber?: boolean;
+  step?: string;
 }
 
 const InputBlock: React.FC<IInputBlockProps> = ({
@@ -34,6 +37,9 @@ const InputBlock: React.FC<IInputBlockProps> = ({
 
   messageMaxLength,
   valueMaxLength,
+
+  valueAsNumber,
+  step,
 }) => {
   return (
     <div className="input__block">
@@ -41,12 +47,17 @@ const InputBlock: React.FC<IInputBlockProps> = ({
       <input
         className={errors ? "active_error" : ""}
         type={inputType}
+        step={step}
         placeholder={placeholder}
         min={1}
         {...register(`${keyRegister}`, {
           required: require === false ? false : `${messageRequire}`,
           min: { value: valueMin, message: `${messageRequireMin}` },
           max: { value: valueMax, message: `${messageRequireMax}` },
+          valueAsNumber: valueAsNumber === true ? true : null,
+          pattern: {
+            value: valueAsNumber === true ? /^(0|[1-9]\d*)(\.\d+)?$/ : null,
+          },
           maxLength:
             messageMaxLength && valueMaxLength
               ? { value: valueMaxLength, message: messageMaxLength }

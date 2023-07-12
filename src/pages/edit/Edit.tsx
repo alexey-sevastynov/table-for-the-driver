@@ -3,20 +3,26 @@ import * as S from "./styles";
 import SidePanel from "../../componets/side-panel/SidePanel";
 import HeaderMobile from "../../componets/header-mobile/HeaderMobile";
 import DataEdit from "../../componets/data-edit/DataEdit";
-import { useAppSelector } from "../../redux/hook";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { useLocation } from "react-router-dom";
 import { IWork } from "../../redux/slices/worksSlice";
 import { showCurrentDay } from "../../helpers/showCurrentDay";
+import { fetchAllOptions } from "../../redux/slices/customerSlice";
 
 type IEditProps = {};
 
 const Edit: React.FC<IEditProps> = () => {
+  const dispatch = useAppDispatch();
   let idnew = 0;
   const location = useLocation();
 
   const stateLocation = location.state;
 
   const { items } = useAppSelector((props) => props.works.jobs);
+
+  React.useEffect(() => {
+    dispatch(fetchAllOptions());
+  }, []);
 
   return (
     <S.Root>

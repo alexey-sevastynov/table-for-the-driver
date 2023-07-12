@@ -14,6 +14,7 @@ import {
 } from "../../redux/slices/worksSlice";
 import InputBlock from "../../componets/input-block/InputBlock";
 import { Link } from "react-router-dom";
+import { fetchAllOptions } from "../../redux/slices/customerSlice";
 
 interface IAddProps {}
 
@@ -74,7 +75,9 @@ const Add: React.FC<IAddProps> = () => {
     reset();
   };
 
-  React.useEffect(() => {}, []);
+  React.useEffect(() => {
+    dispatch(fetchAllOptions());
+  }, []);
 
   return (
     <S.Root>
@@ -143,6 +146,7 @@ const Add: React.FC<IAddProps> = () => {
                   label="hour *"
                   placeholder="hour..."
                   inputType="number"
+                  step="0.5"
                   errors={errors?.hours}
                   register={register}
                   keyRegister="hours"
@@ -151,6 +155,7 @@ const Add: React.FC<IAddProps> = () => {
                   valueMin={1}
                   messageRequireMax="max hour 24"
                   valueMax={24}
+                  valueAsNumber
                 />
 
                 <InputBlock
@@ -294,7 +299,7 @@ const Add: React.FC<IAddProps> = () => {
                 )}
               </div>
               <div className="btns">
-                <Link to="/">
+                <Link to="/table-for-the-driver/">
                   <Button label="back" isUnActive />
                 </Link>
 

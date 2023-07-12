@@ -84,6 +84,7 @@ export const Root = styled.div`
           margin-right: 10px;
           padding: 60px 0px 20px 0px;
           max-width: 765px;
+          min-height: calc(100vh - 120px - 36px);
 
           & h3,h4 {
             padding: 0 10px;

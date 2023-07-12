@@ -9,25 +9,86 @@ export const Root = styled.header`
     justify-content: space-between;
     align-items: center;
 
-    width: 100%;
-    border-radius: 0px 0px 25px 25px;
-    background-color: ${theme.colors.white};
+    width: 100vw;
+    /* border-radius: 0px 0px 25px 25px;
+    background-color: ${theme.colors.white}; */
+    z-index: 50;
+
+    &.top__80 {
+      margin-top: 80px;
+    }
+
+    & .hidden {
+      display: none;
+    }
+
+    & .wallpaper {
+      position: fixed;
+      overflow: hidden;
+      top: 0px;
+      left: 0px;
+      height: 100vh;
+
+      width: 100vw;
+
+      background-color: ${theme.colors.white};
+      border-radius: 0px;
+      z-index: 20;
+      transition: all 0.3s ease;
+
+      &__active {
+        position: absolute;
+        top: calc(80px - 100vh);
+        left: 0px;
+        height: 100vh;
+
+        width: 100vw;
+
+        background-color: ${theme.colors.white};
+        border-radius: 0px 0px 25px 25px;
+        z-index: 20;
+
+        transition: all 0.3s ease;
+      }
+    }
+
+    & .buttons {
+      height: calc(100vh - 80px - 100px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+    }
 
     & .icon {
       height: 80px;
+
+      z-index: 50;
+
+      &.fixed {
+        position: fixed;
+        right: 20px;
+        top: 0px;
+        height: 80px;
+
+        z-index: 50;
+      }
     }
 
     & h1 {
       line-height: 80px;
+      z-index: 50;
     }
 
-    &.active {
-      position: absolute;
-      background-color: ${theme.colors.white};
-      height: 100vh;
-      align-items: flex-start;
-      border-radius: 0px;
-      z-index: 2;
+    & a {
+      z-index: 50;
+
+      &.fixed {
+        position: fixed;
+        left: 20px;
+        top: 0px;
+        z-index: 50;
+      }
     }
 
     @media (min-width: 1120px) {
