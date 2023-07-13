@@ -19,7 +19,7 @@ export const Root = styled.div`
         }
 
         &-title {
-          width: 100px;
+          width: 160px;
         }
         &-data {
         }

@@ -9,14 +9,24 @@ type IStatisticsDayProps = {};
 const StatisticsDay: React.FC<IStatisticsDayProps> = () => {
   const dispatch = useAppDispatch();
 
-  const { totalHours, totalKm, totalIncome } = useAppSelector(
-    (props) => props.statistic
-  );
+  const {
+    totalHours,
+    totalKm,
+    totalIncome,
+    totalUknownIncome,
+    totalMeIncome,
+    totalOtherIncome,
+    totalDebt,
+    totalExpenditure,
+  } = useAppSelector((props) => props.statistic);
 
   const { percent, rate } = useAppSelector((props) => props.customer);
 
+  const checkPercent = percent ? percent : 0;
+  const checkRate = rate ? rate : 0;
+
   const salaryDay =
-    (totalIncome * (percent ? percent : 0)) / 100 + (rate ? rate : 0);
+    ((totalIncome - totalOtherIncome) * checkPercent) / 100 + checkRate;
 
   React.useEffect(() => {
     dispatch(getOneSalary());
@@ -39,21 +49,31 @@ const StatisticsDay: React.FC<IStatisticsDayProps> = () => {
           <p className="table__block-data">{totalIncome} UAH</p>
         </div>
         <div className="table__block">
-          <p className="table__block-title">uknown income:</p>
-          <p className="table__block-data">700 UAH</p>
+          <p className="table__block-title">me income:</p>
+          <p className="table__block-data">{totalMeIncome} UAH</p>
         </div>
         <div className="table__block">
-          <p className="table__block-title">me income:</p>
-          <p className="table__block-data">700 UAH</p>
+          <p className="table__block-title">uknown income:</p>
+          <p className="table__block-data">{totalUknownIncome} UAH</p>
+        </div>
+        <div className="table__block">
+          <p className="table__block-title">total debt:</p>
+          <p className="table__block-data">{totalDebt} UAH</p>
+        </div>
+        <div className="table__block">
+          <p className="table__block-title">other income:</p>
+          <p className="table__block-data">{totalOtherIncome} UAH</p>
         </div>
         <div className="table__block">
           <p className="table__block-title">expenditure:</p>
-          <p className="table__block-data">0 UAH</p>
+          <p className="table__block-data">{totalExpenditure} UAH</p>
         </div>
         <div className="table__block">
           <p className="table__block-title">salary day:</p>
           <p className="table__block-data">
-            {`${totalIncome} uah * ${percent} % + ${rate} uah = ${salaryDay} UAH`}
+            {`${
+              totalIncome - totalOtherIncome
+            } uah * ${percent} % + ${rate} uah = ${salaryDay} UAH`}
           </p>
         </div>
       </div>

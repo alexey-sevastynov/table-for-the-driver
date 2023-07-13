@@ -6,6 +6,11 @@ type TypeInitialState = {
   totalHours: number;
   totalKm: number;
   totalIncome: number;
+  totalUknownIncome: number;
+  totalMeIncome: number;
+  totalOtherIncome: number;
+  totalDebt: number;
+  totalExpenditure: number;
 };
 
 const initialState: TypeInitialState = {
@@ -13,6 +18,11 @@ const initialState: TypeInitialState = {
   totalHours: 0,
   totalKm: 0,
   totalIncome: 0,
+  totalUknownIncome: 0,
+  totalMeIncome: 0,
+  totalOtherIncome: 0,
+  totalDebt: 0,
+  totalExpenditure: 0,
 };
 
 const statisticSlice = createSlice({
@@ -35,10 +45,39 @@ const statisticSlice = createSlice({
       );
       //@ts-ignore
       state.totalIncome = state.currentDay.reduce(
-        //@ts-ignore
-        (sum: number, current: IWork) => sum + current.income,
+        (sum: number, current: IWork) => sum + (current.income || 0),
         0
       );
+      //@ts-ignore
+      state.totalExpenditure = state.currentDay.reduce(
+        (sum: number, current: IWork) => sum + (current.expenditure || 0),
+        0
+      );
+      state.totalMeIncome = state.currentDay
+        .filter((item) => item.status === 1)
+        .reduce(
+          (sum: number, current: IWork) => sum + (current.income || 0),
+          0
+        );
+      state.totalUknownIncome = state.currentDay
+        .filter((item) => item.status === 2)
+        .reduce(
+          (sum: number, current: IWork) => sum + (current.income || 0),
+          0
+        );
+      state.totalDebt = state.currentDay
+        .filter((item) => item.status === 3)
+        .reduce(
+          (sum: number, current: IWork) => sum + (current.income || 0),
+          0
+        );
+
+      state.totalOtherIncome = state.currentDay
+        .filter((item) => item.status === 4)
+        .reduce(
+          (sum: number, current: IWork) => sum + (current.income || 0),
+          0
+        );
     },
     // setRate: (state, action: PayloadAction<number>) => {
     //   state.rate = action.payload;

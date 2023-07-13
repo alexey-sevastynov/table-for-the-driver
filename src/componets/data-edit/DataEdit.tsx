@@ -141,6 +141,7 @@ const DataEdit: React.FC<IDataEditProps> = ({
             type="number"
             className={errors.hours ? "border" : ""}
             placeholder="hours..."
+            step="0.5"
             min={1}
             max={24}
             {...register("hours", {

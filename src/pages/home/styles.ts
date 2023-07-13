@@ -106,6 +106,27 @@ export const Root = styled.div`
           padding: 60px 0px 20px 0px;
           max-width: 765px;
 
+          min-height: calc(100vh - 154px);
+
+          & .overflow {
+         
+     
+
+
+          & .center{
+            position: absolute;
+           top: 10%;
+           left: 50%;
+           transform: translateX(-50%);
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
+          }
+
+        }
+
            & .header {
          padding: 0px 10px;
         }
