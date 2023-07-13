@@ -23,15 +23,19 @@ const statisticSlice = createSlice({
       state.currentDay = action.payload;
     },
     getTotalStaticsDay: (state) => {
+      //@ts-ignore
       state.totalHours = state.currentDay.reduce(
         (sum: number, current: IWork) => sum + current.hours,
         0
       );
+      //@ts-ignore
       state.totalKm = state.currentDay.reduce(
         (sum: number, current: IWork) => sum + current.km,
         0
       );
+      //@ts-ignore
       state.totalIncome = state.currentDay.reduce(
+        //@ts-ignore
         (sum: number, current: IWork) => sum + current.income,
         0
       );

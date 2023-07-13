@@ -15,7 +15,8 @@ const StatisticsDay: React.FC<IStatisticsDayProps> = () => {
 
   const { percent, rate } = useAppSelector((props) => props.customer);
 
-  const salaryDay = (totalIncome * percent) / 100 + rate;
+  const salaryDay =
+    (totalIncome * (percent ? percent : 0)) / 100 + (rate ? rate : 0);
 
   React.useEffect(() => {
     dispatch(getOneSalary());
