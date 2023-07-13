@@ -3,7 +3,7 @@ import axios from "axios";
 
 const API_URL = "https://api-table-for-the-driver.vercel.app/";
 
-type TypeCustomerItem = {
+export type TypeCustomerItem = {
   _id: string;
   customer: string;
   hour: number;

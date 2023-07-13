@@ -23,15 +23,80 @@ const Add: React.FC<IAddProps> = () => {
   const { items } = useAppSelector((props) => props.works.jobs);
   const { items: options } = useAppSelector((props) => props.customer);
 
-  console.log(options);
-
   const date = new Date();
+
+  const tKmToHours = (customerName: string, km: number) => {
+    const item = options.find((obj) => obj.customer === customerName);
+
+    if (!item) return 2;
+    const priceOneHour: number = item.hour; // 350: number
+    const priceOneKm: number = item.km; // 16: number
+    const maxKmInHour: number = priceOneHour / priceOneKm; // 21,875
+
+    const result = (km / maxKmInHour).toFixed(1);
+    const resultToFixed_2 = (km / maxKmInHour).toFixed(2);
+    const indexLastNumber = result.length - 1;
+    const lastNumber = result[indexLastNumber];
+
+    if (+result < 2 && +resultToFixed_2 < 2) {
+      return 2;
+    }
+
+    if (
+      (lastNumber === "0" && +resultToFixed_2 >= currentHour) ||
+      lastNumber === "1" ||
+      lastNumber === "2" ||
+      lastNumber === "3" ||
+      lastNumber === "4" ||
+      lastNumber === "5"
+    ) {
+      console.log(Math.floor(+result), "1");
+      return Math.floor(+result) + 0.5;
+    }
+
+    if (
+      lastNumber === "6" ||
+      lastNumber === "7" ||
+      lastNumber === "8" ||
+      lastNumber === "9"
+    ) {
+      console.log(Math.ceil(+result), "2");
+      return Math.ceil(+result);
+    }
+
+    if (lastNumber === "0") {
+      console.log(Math.floor(+result), "3");
+      return Math.floor(+result);
+    }
+  };
+
+  const whatIncome = (customerName: string, hours: number, km: number) => {
+    const item = options.find((obj) => obj.customer === customerName);
+
+    if (!item) return undefined;
+
+    const priceOneHour: number = item.hour; // 350: number
+    const priceOneKm: number = item.km; // 16: number
+
+    const incomeInKm = priceOneKm * km; // 16 UAH * (50 km * 17 uah ) = 800 uah
+    const incomeInHours = priceOneHour * hours; // 300 UAH * 3 = 900 uah
+
+    if (incomeInHours > incomeInKm) {
+      console.log(incomeInHours, "incomeInHours");
+      return incomeInHours;
+    } else {
+      console.log(incomeInKm, "incomeInKm");
+      return incomeInKm;
+    }
+  };
 
   const {
     register,
     formState: { errors },
     handleSubmit,
     reset,
+    setValue,
+    watch,
   } = useForm<fetchPostWorkArgs>({
     mode: "onBlur",
     defaultValues: {
@@ -40,6 +105,11 @@ const Add: React.FC<IAddProps> = () => {
       year: date.getFullYear(),
     },
   });
+
+  const currentCustomer = watch("customer");
+  const currentKm = watch("km");
+  const currentHour = watch("hours");
+  const currentStatus = +watch("status");
 
   const onSubmit = async (data: fetchPostWorkArgs) => {
     const possibleObjs = items.filter((item: fetchPostWorkArgs) =>
@@ -78,6 +148,16 @@ const Add: React.FC<IAddProps> = () => {
   React.useEffect(() => {
     dispatch(fetchAllOptions());
   }, []);
+
+  React.useEffect(() => {
+    setValue("hours", tKmToHours(currentCustomer, currentKm) || 0);
+  }, [currentCustomer, currentKm]);
+
+  React.useEffect(() => {
+    currentStatus === 2
+      ? setValue("income", whatIncome(currentCustomer, currentHour, currentKm))
+      : setValue("income", undefined);
+  }, [currentCustomer, currentKm, currentHour, currentStatus]);
 
   return (
     <S.Root>

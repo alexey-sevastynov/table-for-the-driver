@@ -43,11 +43,13 @@ const DataEdit: React.FC<IDataEditProps> = ({
     register,
     formState: { errors },
     handleSubmit,
+    watch,
+    setValue,
   } = useForm<fetchPostWorkArgs>({
     mode: "onBlur",
     defaultValues: {
       id,
-      customer,
+      customer: customer,
       route,
       hours,
       km,
@@ -57,6 +59,10 @@ const DataEdit: React.FC<IDataEditProps> = ({
       status,
     },
   });
+
+  const currentCustomer = watch("customer");
+
+  console.log(customer);
 
   const removeItem = async (id: string) => {
     if (confirm("are you want to delete item ?")) {
@@ -71,6 +77,10 @@ const DataEdit: React.FC<IDataEditProps> = ({
       dispatch(fetchWorks());
     });
   };
+
+  React.useEffect(() => {
+    setValue("customer", currentCustomer);
+  }, [options]);
 
   return (
     <S.Root tabIndex={status}>
