@@ -1,7 +1,6 @@
 import React from "react";
 
 import * as S from "./styles";
-import Button from "../button/Button";
 
 type IDataDayProps = {
   id: number;
