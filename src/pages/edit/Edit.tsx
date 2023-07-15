@@ -19,6 +19,7 @@ const Edit: React.FC<IEditProps> = () => {
   const stateLocation = location.state;
 
   const { items } = useAppSelector((props) => props.works.jobs);
+  const isAuth = useAppSelector((props) => props.works.isAuth);
 
   React.useEffect(() => {
     dispatch(fetchAllOptions());
@@ -29,7 +30,7 @@ const Edit: React.FC<IEditProps> = () => {
       <SidePanel />
       <HeaderMobile />
       <div className="colum_2">
-        <h2>Hello, world!</h2>
+        <h2>{isAuth ? "Hello, driver!" : "Hello, world!"}</h2>
         <main>
           <div className="header">
             <h3>Edit form</h3>

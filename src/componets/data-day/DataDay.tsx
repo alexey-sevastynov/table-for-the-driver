@@ -1,6 +1,7 @@
 import React from "react";
 
 import * as S from "./styles";
+import Button from "../button/Button";
 
 type IDataDayProps = {
   id: number;
@@ -27,28 +28,33 @@ const DataDay: React.FC<IDataDayProps> = ({
 }) => {
   return (
     <S.Root inlist={status}>
-      <div className="col__id">
-        <p>{id}</p>
+      <div className="head">
+        <div className="col__id">
+          <p>{`Delivery № ${id}`}</p>
+        </div>
+        <div className="col__customer">
+          <p>customer: {customer}</p>
+        </div>
       </div>
-      <div className="col__customer">
-        <p>{customer}</p>
-      </div>
-      <div className="col__route">
-        <p>{route}</p>
-      </div>
+
+      {route && (
+        <div className="col__route">
+          <p>{`Route: ${route}`}</p>
+        </div>
+      )}
       <div className="col__property">
         <p>hours:</p>
         <p>km:</p>
         <p>income:</p>
-        <p>expenditure:</p>
-        <p>description:</p>
+        {expenditure && <p>expenditure:</p>}
+        {description && <p>description:</p>}
       </div>
       <div className="col__value">
-        <p>{hours ? hours : "-"}</p>
-        <p>{km ? km : "-"}</p>
-        <p>{income ? income : "-"}</p>
-        <p>{expenditure ? expenditure : "-"}</p>
-        <p>{description ? description : "-"}</p>
+        <p>{hours ? hours : 0}</p>
+        <p>{km ? km : 0}</p>
+        <p>{status === 1 || status === 4 ? `+${income}` : income}</p>
+        {expenditure && <p>{expenditure ? expenditure : "-"}</p>}
+        {description && <p>{description ? description : "-"}</p>}
       </div>
     </S.Root>
   );

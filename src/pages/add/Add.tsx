@@ -22,6 +22,7 @@ const Add: React.FC<IAddProps> = () => {
   const dispatch = useAppDispatch();
   const { items } = useAppSelector((props) => props.works.jobs);
   const { items: options } = useAppSelector((props) => props.customer);
+  const isAuth = useAppSelector((props) => props.works.isAuth);
 
   const date = new Date();
 
@@ -164,7 +165,7 @@ const Add: React.FC<IAddProps> = () => {
       <SidePanel />
       <HeaderMobile />
       <div className="colum_2">
-        <h2>Hello, world!</h2>
+        <h2>{isAuth ? "Hello, driver!" : "Hello, world!"}</h2>
         <main>
           <h3>Form to fill:</h3>
           <div className="overflow">

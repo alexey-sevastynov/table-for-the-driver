@@ -23,13 +23,13 @@ export const Root = styled.div`
         height: calc(100vh - 120px);
 
         & .overflow {
-         
           height: calc(100% - 80px);
           overflow: scroll;
 
-
-       
-
+          & .btns {
+            margin-top: 30px;
+            float: right;
+          }
         }
 
         & .overflow::-webkit-scrollbar {
@@ -37,17 +37,13 @@ export const Root = styled.div`
           height: 0;
         }
 
-       
-
         & h3 {
-            line-height: 23px;
-            margin-bottom: 24px;
-          }
-
-      
+          line-height: 23px;
+          margin-bottom: 24px;
         }
       }
-       @media (max-width: 1120px) {
+    }
+    @media (max-width: 1120px) {
       flex-direction: column;
 
       & .colum_2 {
@@ -60,7 +56,7 @@ export const Root = styled.div`
       }
     }
 
-     @media (max-width: 810px) {
+    @media (max-width: 810px) {
       & .colum_2 {
         & main {
           max-width: 665px;
@@ -68,28 +64,28 @@ export const Root = styled.div`
       }
     }
     @media (max-width: 690px) {
-       
       & .colum_2 {
-
-         & h2 {
-        padding: 30px 0px 20px 20px;
-      }
+        & h2 {
+          padding: 30px 0px 20px 20px;
+        }
         & main {
           margin-left: 10px;
           margin-right: 10px;
           padding: 60px 0px 20px 0px;
           max-width: 765px;
-            & h3{
-              padding-left: 10px;
+          min-height: calc(100vh - 154px);
+          & h3 {
+            padding-left: 10px;
+          }
+
+          & .overflow {
+            & .btns {
+              float: right;
+              margin-right: 10px;
             }
-         
+          }
         }
       }
     }
-    }
-
-   
-
-   
   `}
 `;

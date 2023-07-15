@@ -25,5 +25,10 @@ export const Root = styled.div`
         }
       }
     }
+
+    @media (max-width: 600px) {
+      padding: 0px 10px;
+      flex-direction: column;
+    }
   `}
 `;

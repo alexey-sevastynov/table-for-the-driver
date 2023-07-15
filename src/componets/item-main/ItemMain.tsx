@@ -23,6 +23,7 @@ interface IItemMainProps {
 
 const ItemMain: React.FC<IItemMainProps> = ({ day, month, year }) => {
   const dispatch = useAppDispatch();
+  const isAuth = useAppSelector((props) => props.works.isAuth);
   const items = useAppSelector((props) => props.works.jobs.items);
   const date = new Date(year, month - 1, day);
 
@@ -42,17 +43,25 @@ const ItemMain: React.FC<IItemMainProps> = ({ day, month, year }) => {
           <h4>{showDate(day, month, year)}</h4>
         </Link>
 
-        <h5>{getWeekDay(date)}</h5>
+        <h6>{getWeekDay(date)}</h6>
 
-        <Icon
-          iconName="close"
-          className="close"
-          onClick={() => removeDay(day, month, year)}
-        />
+        {isAuth && (
+          <Icon
+            iconName="close"
+            className="close"
+            onClick={() => removeDay(day, month, year)}
+          />
+        )}
 
-        <Link to={"/edit"} state={{ day, month, year }} className="edit__link">
-          <Icon iconName="edit" className="edit" />
-        </Link>
+        {isAuth && (
+          <Link
+            to={"/edit"}
+            state={{ day, month, year }}
+            className="edit__link"
+          >
+            <Icon iconName="edit" className="edit" />
+          </Link>
+        )}
       </S.Header>
 
       <S.TableHead>

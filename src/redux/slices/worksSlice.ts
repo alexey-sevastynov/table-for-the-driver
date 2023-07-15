@@ -127,6 +127,8 @@ interface IWorkSlice {
     items: [];
     status: string;
   };
+
+  isAuth: boolean;
 }
 
 const initialState: IWorkSlice = {
@@ -134,12 +136,17 @@ const initialState: IWorkSlice = {
     items: [],
     status: "loading",
   },
+  isAuth: false,
 };
 
 const worksSlice = createSlice({
   name: "worksSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    loginIn: (state) => {
+      state.isAuth = true;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchWorks.pending, (state) => {
       state.jobs.items = [];
@@ -201,6 +208,6 @@ const worksSlice = createSlice({
   },
 });
 
-export const {} = worksSlice.actions;
+export const { loginIn } = worksSlice.actions;
 
 export const worksReducer = worksSlice.reducer;

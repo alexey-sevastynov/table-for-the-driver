@@ -70,11 +70,7 @@ const StatisticsDay: React.FC<IStatisticsDayProps> = () => {
         </div>
         <div className="table__block">
           <p className="table__block-title">salary day:</p>
-          <p className="table__block-data">
-            {`${
-              totalIncome - totalOtherIncome
-            } uah * ${percent} % + ${rate} uah = ${salaryDay} UAH`}
-          </p>
+          <p className="table__block-data">{`${salaryDay} UAH`}</p>
         </div>
       </div>
     </S.Root>

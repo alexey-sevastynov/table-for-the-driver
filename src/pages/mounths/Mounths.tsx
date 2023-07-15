@@ -17,6 +17,7 @@ interface IMounthsProps {}
 
 const Mounths: React.FC<IMounthsProps> = () => {
   const { items } = useAppSelector((props) => props.works.jobs);
+  const isAuth = useAppSelector((props) => props.works.isAuth);
 
   //________________________________
   const getListAllYears = items.map((item: IWork) => item.year); // [2023, 2023, 2023, 2023, 2023, 2024, 2024, 2024, 2023]
@@ -75,7 +76,7 @@ const Mounths: React.FC<IMounthsProps> = () => {
       <SidePanel />
       <HeaderMobile />
       <div className="colum_2">
-        <h2>Hello, world!</h2>
+        <h2>{isAuth ? "Hello, driver!" : "Hello, world!"}</h2>
         <main>
           <h3>My working months</h3>
           <div className="overflow">

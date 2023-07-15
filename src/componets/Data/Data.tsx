@@ -34,7 +34,10 @@ const Data: React.FC<IDataProps> = ({
         <h5>{customer}</h5>
       </div>
       <div className="route">
-        <h5>{route}</h5>
+        <h5>
+          {route?.slice(0, 23)}
+          {route && route?.length >= 23 ? "..." : ""}
+        </h5>
       </div>
       <div className="hours">
         <h5>{hours}</h5>

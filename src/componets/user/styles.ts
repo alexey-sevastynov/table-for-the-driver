@@ -1,12 +1,13 @@
 import styled, { css } from "styled-components";
 
-export const Root = styled.div`
-  ${() => css`
+export const Root = styled.div<{ isAuth: boolean }>`
+  ${({ isAuth }) => css`
     position: absolute;
     bottom: 30px;
     left: 30px;
 
     display: flex;
+    cursor: ${isAuth ? "unset" : "pointer"};
 
     & div {
       display: flex;

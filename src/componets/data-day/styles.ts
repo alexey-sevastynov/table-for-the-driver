@@ -7,6 +7,7 @@ export const Root = styled.div`
     align-items: flex-start;
 
     padding: 10px;
+    margin: 5px 0px;
 
     background-color: ${(props: any) =>
       props.inlist === 1 && theme.colors.paid};
@@ -20,7 +21,13 @@ export const Root = styled.div`
     background-color: ${(props: any) =>
       props.inlist === 4 && theme.colors.other};
 
+    & .head {
+      display: flex;
+      width: 100%;
+    }
+
     & .col__id,
+    .col__customer,
     .col__route,
     .col__property,
     .col__value {
@@ -29,25 +36,24 @@ export const Root = styled.div`
       }
     }
     & .col__id {
-      text-align: center;
-      width: 5%;
+      width: 50%;
     }
 
     & .col__customer {
-      width: 95%;
+      width: 50%;
     }
 
     & .col__route {
-      width: 60%;
+      width: 100%;
     }
 
     & .col__property {
-      width: 15%;
+      width: 100px;
     }
 
     & .col__value {
       text-align: center;
-      width: 25%;
+      width: 100px;
     }
 
     @media (max-width: 810px) {

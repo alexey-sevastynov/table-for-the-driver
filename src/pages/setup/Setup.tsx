@@ -42,6 +42,7 @@ const Setup: React.FC<ISetupProps> = () => {
   const { percent, rate, items, customerItem } = useAppSelector(
     (props) => props.customer
   );
+  const isAuth = useAppSelector((props) => props.works.isAuth);
 
   const registerForm = () => {
     const {
@@ -161,7 +162,7 @@ const Setup: React.FC<ISetupProps> = () => {
       <SidePanel />
       <HeaderMobile />
       <div className="colum_2">
-        <h2>Hello, world!</h2>
+        <h2>{isAuth ? "Hello, driver!" : "Hello, world!"}</h2>
         <main>
           <h3>Setup:</h3>
           <div className="overflow">

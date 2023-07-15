@@ -8,10 +8,13 @@ import { Icon } from "../Icon";
 import ButttonLink from "../button-link/ButtonLink";
 
 import User from "../user/User";
+import { useAppSelector } from "../../redux/hook";
 interface IHeaderMobileProps {}
 
 const HeaderMobile: React.FC<IHeaderMobileProps> = () => {
   const [toggleMenu, setToggleMenu] = React.useState<boolean>(false);
+
+  const isAuth = useAppSelector((props) => props.works.isAuth);
 
   const clickToggleMenu = () => {
     setToggleMenu((toggleMenu) => !toggleMenu);
@@ -34,18 +37,28 @@ const HeaderMobile: React.FC<IHeaderMobileProps> = () => {
             <ButttonLink icon="months" title="months" link="/months" />
           </div>
 
-          <div>
-            <ButttonLink icon="setup" title="setup" link="/setup" />
-            <ButttonLink icon="add" title="add item" link="/add" />
-          </div>
+          {isAuth && (
+            <div>
+              <ButttonLink icon="setup" title="setup" link="/setup" />
+              <ButttonLink icon="add" title="add item" link="/add" />
+            </div>
+          )}
         </nav>
 
         <div className={toggleMenu ? "" : "hidden"}>
-          <User
-            image="user.png"
-            name="User"
-            description="Guest, has access to view"
-          />
+          {isAuth ? (
+            <User
+              image="driver.png"
+              name="Driver"
+              description="Driver, has access to edit"
+            />
+          ) : (
+            <User
+              image="user.png"
+              name="User"
+              description="Guest, has access to view"
+            />
+          )}
         </div>
       </div>
 
@@ -54,7 +67,7 @@ const HeaderMobile: React.FC<IHeaderMobileProps> = () => {
         className={toggleMenu ? "fixed" : ""}
         onClick={clickCloseMenu}
       >
-        <h1>Dashboard</h1>
+        <h1>For driver</h1>
       </Link>
 
       <Icon

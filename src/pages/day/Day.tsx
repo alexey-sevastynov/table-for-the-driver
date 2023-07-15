@@ -13,6 +13,7 @@ import {
   setCurrentDay,
   getTotalStaticsDay,
 } from "../../redux/slices/statisticSlice";
+import Button from "../../componets/button/Button";
 
 interface IDayProps {}
 
@@ -23,6 +24,7 @@ const Day: React.FC<IDayProps> = () => {
   const stateLocation = location.state; //{"day": 7, "month": 7,"year": 2023}
 
   const { items } = useAppSelector((props) => props.works.jobs);
+  const isAuth = useAppSelector((props) => props.works.isAuth);
 
   const itemsDay = items.filter(
     (item: IWork) =>
@@ -41,7 +43,7 @@ const Day: React.FC<IDayProps> = () => {
       <SidePanel />
       <HeaderMobile />
       <div className="colum_2">
-        <h2>Hello, world!</h2>
+        <h2>{isAuth ? "Hello, driver!" : "Hello, world!"}</h2>
         <main>
           <h3>
             {showCurrentDay(
@@ -66,10 +68,12 @@ const Day: React.FC<IDayProps> = () => {
                 description={item.description}
               />
             ))}
-            {/* id, status, customer, route, hours, km, income, expenditure,
-            description,
-            <DataDay status={1}  /> */}
-            <StatisticsDay />
+
+            {isAuth && <StatisticsDay />}
+
+            <div className="btns">
+              <Button label="back" click={() => window.history.back()} />
+            </div>
           </div>
         </main>
       </div>

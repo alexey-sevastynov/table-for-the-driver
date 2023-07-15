@@ -93,10 +93,14 @@ h4 {
     }
 }
 h5 {
-    font-size: 12px;
+    font-size: 14px;
+     @media(max-width: 600px){
+        font-size: 12px;
+       
+    }
      
 }
-h5 {
+h6 {
     font-size: 10px;
     
      

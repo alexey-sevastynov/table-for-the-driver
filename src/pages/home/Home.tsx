@@ -24,6 +24,7 @@ const Home: React.FC<IHomeProps> = () => {
 
   const dispatch = useAppDispatch();
   const { items, status } = useAppSelector((props) => props.works.jobs);
+  const isAuth = useAppSelector((props) => props.works.isAuth);
 
   const date = new Date();
 
@@ -122,7 +123,7 @@ const Home: React.FC<IHomeProps> = () => {
       <SidePanel />
       <HeaderMobile />
       <div className="colum_2">
-        <h2>Hello, world!</h2>
+        <h2>{isAuth ? "Hello, driver!" : "Hello, world!"}</h2>
         <main>
           <div className="header">
             <h3>{showData}</h3>
@@ -152,7 +153,7 @@ const Home: React.FC<IHomeProps> = () => {
             ) : (
               onLoader
             )}
-            {valueSearch.length === 0 && (
+            {valueSearch.length === 0 && isAuth && (
               <div className="btns">
                 <Link to="/statistics" state={stateLocation}>
                   <Button label="statistics" />
