@@ -27,16 +27,16 @@ const HeaderMobile: React.FC<IHeaderMobileProps> = () => {
         <nav className="buttons">
           <div>
             <ButttonLink
-              icon="home"
+              icon="month"
               title="current month"
               link="/table-for-the-driver/"
             />
-            <ButttonLink icon="home" title="months" link="/months" />
+            <ButttonLink icon="months" title="months" link="/months" />
           </div>
 
           <div>
-            <ButttonLink icon="home" title="setup" link="/setup" />
-            <ButttonLink icon="home" title="add item" link="/add" />
+            <ButttonLink icon="setup" title="setup" link="/setup" />
+            <ButttonLink icon="add" title="add item" link="/add" />
           </div>
         </nav>
 

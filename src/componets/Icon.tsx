@@ -15,8 +15,8 @@ export function Icon({ iconName, className, style, ...props }: IconProps) {
     <>
       {loading && (
         <BallTriangle
-          height={25}
-          width={25}
+          height={22}
+          width={22}
           radius={5}
           color="white"
           ariaLabel="ball-triangle-loading"

@@ -10,20 +10,20 @@ interface ISidePanelProps {}
 const SidePanel: React.FC<ISidePanelProps> = () => {
   return (
     <S.Root>
-      <h1>Dashboard</h1>
+      <h1>For driver</h1>
       <nav className="buttons">
         <div>
           <ButttonLink
-            icon="home"
+            icon="month"
             title="current month"
             link="/table-for-the-driver/"
           />
-          <ButttonLink icon="home" title="months" link="/months" />
-          <ButttonLink icon="home" title="setup" link="/setup" />
+          <ButttonLink icon="months" title="months" link="/months" />
+          <ButttonLink icon="setup" title="setup" link="/setup" />
         </div>
 
         <div>
-          <ButttonLink icon="home" title="add item" link="/add" />
+          <ButttonLink icon="add" title="add item" link="/add" />
         </div>
       </nav>
 

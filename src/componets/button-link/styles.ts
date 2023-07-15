@@ -17,14 +17,25 @@ export const Root = styled(NavLink)`
 
     margin-bottom: 6px;
 
+    & .months {
+      & circle {
+        fill: ${theme.colors.white};
+      }
+    }
+
     & svg {
       margin: 0px 20px 0px 10px;
     }
 
     & .active {
-      & path {
+      & path,
+      circle,
+      rect {
         stroke: ${theme.colors.white};
       }
+    }
+
+    & svg {
     }
   `}
 `;
