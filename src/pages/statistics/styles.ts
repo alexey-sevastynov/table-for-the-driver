@@ -66,6 +66,10 @@ export const Root = styled.div`
       }
     }
 
+    @media (max-width: 600px) {
+      margin: 0px;
+    }
+
     @media print {
       margin: 0px;
       box-shadow: none;

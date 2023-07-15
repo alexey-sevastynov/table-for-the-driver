@@ -23,24 +23,20 @@ export const Root = styled.div`
         height: calc(100vh - 120px);
 
         & .overflow {
-         
           height: calc(100% - 80px);
           overflow: scroll;
 
-
-          & .center{
-             height: 100%;
+          & .center {
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-           
           }
 
-          & .btns{
+          & .btns {
             margin-top: 50px;
             float: right;
           }
-
         }
 
         & .overflow::-webkit-scrollbar {
@@ -99,12 +95,10 @@ export const Root = styled.div`
       }
     }
     @media (max-width: 690px) {
-       
       & .colum_2 {
-
-         & h2 {
-        padding: 30px 0px 20px 20px;
-      }
+        & h2 {
+          padding: 30px 0px 20px 20px;
+        }
         & main {
           margin-left: 10px;
           margin-right: 10px;
@@ -114,26 +108,30 @@ export const Root = styled.div`
           min-height: calc(100vh - 154px);
 
           & .overflow {
-         
-     
+            & .searchHelp {
+              text-align: justify;
+              padding: 0px 10px;
+            }
 
+            & .center {
+              position: absolute;
+              top: 10%;
+              left: 50%;
+              transform: translateX(-50%);
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
 
-          & .center{
-            position: absolute;
-           top: 10%;
-           left: 50%;
-           transform: translateX(-50%);
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-           
+            & .btns {
+              padding-right: 10px;
+            }
           }
 
-        }
-
-           & .header {
-         padding: 0px 10px;
+          & .header {
+            padding: 0px 10px;
+          }
         }
       }
     }

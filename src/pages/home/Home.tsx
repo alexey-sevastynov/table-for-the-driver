@@ -16,6 +16,8 @@ import Button from "../../componets/button/Button";
 interface IHomeProps {}
 
 const Home: React.FC<IHomeProps> = () => {
+  const [valueSearch, setValueSearch] = React.useState("");
+
   const location = useLocation();
 
   const stateLocation = location.state;
@@ -45,6 +47,45 @@ const Home: React.FC<IHomeProps> = () => {
   React.useEffect(() => {
     apiWorks();
   }, []);
+
+  const searchWorks = items
+    .filter((item: IWork) => {
+      return (
+        (`0${item.day}` === valueSearch && item.id === 1) ||
+        (`${item.day}` === valueSearch && item.id === 1) ||
+        (`0${item.day}.` === valueSearch && item.id === 1) ||
+        (`${item.day}.` === valueSearch && item.id === 1) ||
+        (`0${item.day}.0${item.month}` === valueSearch && item.id === 1) ||
+        (`0${item.day}.${item.month}` === valueSearch && item.id === 1) ||
+        (`${item.day}.${item.month}` === valueSearch && item.id === 1) ||
+        (`${item.day}.0${item.month}` === valueSearch && item.id === 1) ||
+        (`0${item.day}.0${item.month}.${item.year.toString().slice(2)}` ===
+          valueSearch &&
+          item.id === 1) ||
+        (`${item.day}.0${item.month}.${item.year.toString().slice(2)}` ===
+          valueSearch &&
+          item.id === 1) ||
+        (`0${item.day}.${item.month}.${item.year.toString().slice(2)}` ===
+          valueSearch &&
+          item.id === 1) ||
+        (`0${item.day}.0${item.month}.${item.year}` === valueSearch &&
+          item.id === 1) ||
+        (`${item.day}.0${item.month}.${item.year}` === valueSearch &&
+          item.id === 1) ||
+        (`0${item.day}.${item.month}.${item.year}` === valueSearch &&
+          item.id === 1) ||
+        (`${item.day}.${item.month}.${item.year}` === valueSearch &&
+          item.id === 1)
+      );
+    })
+    .map((item: IWork) => (
+      <ItemMain
+        key={item._id}
+        day={item.day}
+        month={item.month}
+        year={item.year}
+      />
+    ));
 
   const dataOnWorks = items
     .filter((item: IWork) => {
@@ -86,18 +127,38 @@ const Home: React.FC<IHomeProps> = () => {
           <div className="header">
             <h3>{showData}</h3>
             <div className="header__input">
-              <input type="text" placeholder="find data..." />
+              <input
+                type="text"
+                placeholder="find data..."
+                onChange={(e) => setValueSearch(e.target.value)}
+              />
               <Icon iconName="find" />
             </div>
           </div>
-          <div className="overflow">
-            {status === "loaded" ? dataOnWorks : onLoader}
 
-            <div className="btns">
-              <Link to="/statistics" state={stateLocation}>
-                <Button label="statistics" />
-              </Link>
-            </div>
+          <div className="overflow">
+            {status === "loaded" ? (
+              valueSearch === "" ? (
+                dataOnWorks
+              ) : searchWorks.length === 0 ? (
+                <p className="searchHelp">
+                  "Поки ще не знайшов, напевно не має такого дня. Або Ви ввели
+                  не правильно, перевірь будь ласка! Коректно писати:
+                  дата.місяць.рік (01.01.2023)"
+                </p>
+              ) : (
+                searchWorks
+              )
+            ) : (
+              onLoader
+            )}
+            {valueSearch.length === 0 && (
+              <div className="btns">
+                <Link to="/statistics" state={stateLocation}>
+                  <Button label="statistics" />
+                </Link>
+              </div>
+            )}
           </div>
         </main>
       </div>
