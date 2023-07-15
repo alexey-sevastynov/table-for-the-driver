@@ -36,6 +36,11 @@ export const Root = styled.div`
            
           }
 
+          & .btns{
+            margin-top: 50px;
+            float: right;
+          }
+
         }
 
         & .overflow::-webkit-scrollbar {

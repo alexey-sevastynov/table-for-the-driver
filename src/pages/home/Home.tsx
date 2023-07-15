@@ -10,7 +10,8 @@ import { IWork, fetchWorks } from "../../redux/slices/worksSlice";
 import { showCurrentDate } from "../../helpers/showCurrentDate";
 
 import { RotatingLines } from "react-loader-spinner";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import Button from "../../componets/button/Button";
 
 interface IHomeProps {}
 
@@ -91,6 +92,12 @@ const Home: React.FC<IHomeProps> = () => {
           </div>
           <div className="overflow">
             {status === "loaded" ? dataOnWorks : onLoader}
+
+            <div className="btns">
+              <Link to="/statistics" state={stateLocation}>
+                <Button label="statistics" />
+              </Link>
+            </div>
           </div>
         </main>
       </div>

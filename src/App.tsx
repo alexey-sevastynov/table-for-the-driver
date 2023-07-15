@@ -8,6 +8,7 @@ import Add from "./pages/add/Add";
 import Day from "./pages/day/Day";
 import Edit from "./pages/edit/Edit";
 import Setup from "./pages/setup/Setup";
+import Statistics from "./pages/statistics/Statistics";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path={ROUTES.DAY} element={<Day />} />
         <Route path={ROUTES.EDIT} element={<Edit />} />
         <Route path={ROUTES.SETUP} element={<Setup />} />
+        <Route path={ROUTES.STATISTICS} element={<Statistics />} />
       </Routes>
     </div>
   );

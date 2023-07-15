@@ -40,6 +40,16 @@ a {
     font-size: 18px;
 }
 
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+li {
+     list-style: none;
+ 
+}
+
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
     font-weight: 400;
@@ -92,7 +102,7 @@ h5 {
      
 }
 
-p {
+p, li {
     
     font-size: 14px;
     margin: 0;
