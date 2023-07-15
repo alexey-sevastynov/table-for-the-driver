@@ -155,7 +155,7 @@ const Add: React.FC<IAddProps> = () => {
   }, [currentCustomer, currentKm]);
 
   React.useEffect(() => {
-    currentStatus === 2
+    currentStatus === 2 || currentStatus === 1 || currentStatus === 3
       ? setValue("income", whatIncome(currentCustomer, currentHour, currentKm))
       : setValue("income", undefined);
   }, [currentCustomer, currentKm, currentHour, currentStatus]);
@@ -271,13 +271,12 @@ const Add: React.FC<IAddProps> = () => {
               <div className="items__input_money">
                 <div className="income input__block">
                   <InputBlock
-                    label="income"
+                    label="income *"
                     placeholder="income..."
                     inputType="number"
                     errors={errors?.income}
                     register={register}
                     keyRegister="income"
-                    require={false}
                     messageRequire="incorrect income"
                     messageRequireMin="min income 1"
                     valueMin={1}
