@@ -144,7 +144,7 @@ const worksSlice = createSlice({
   initialState,
   reducers: {
     loginIn: (state) => {
-      state.isAuth = true;
+      state.isAuth = !state.isAuth;
     },
   },
   extraReducers: (builder) => {

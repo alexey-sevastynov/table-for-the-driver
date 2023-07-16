@@ -24,7 +24,7 @@ const User: React.FC<IUserProps> = ({ image, name, description }) => {
   };
 
   return (
-    <S.Root isAuth={isAuth} onClick={clickUser}>
+    <S.Root isauth={isAuth} onClick={clickUser}>
       <img src={getImageUrl(image)} alt="foto" width={50} height={50} />
       <div>
         <h4>{name}</h4>

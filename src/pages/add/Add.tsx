@@ -151,12 +151,20 @@ const Add: React.FC<IAddProps> = () => {
   }, []);
 
   React.useEffect(() => {
-    setValue("hours", tKmToHours(currentCustomer, currentKm) || 0);
+    console.log(currentKm, currentCustomer, currentHour);
+
+    setValue(
+      "hours",
+      tKmToHours(currentCustomer || "Invatech", currentKm) || 0
+    );
   }, [currentCustomer, currentKm]);
 
   React.useEffect(() => {
     currentStatus === 2 || currentStatus === 1 || currentStatus === 3
-      ? setValue("income", whatIncome(currentCustomer, currentHour, currentKm))
+      ? setValue(
+          "income",
+          whatIncome(currentCustomer || "Invatech", currentHour, currentKm)
+        )
       : setValue("income", undefined);
   }, [currentCustomer, currentKm, currentHour, currentStatus]);
 
@@ -224,6 +232,20 @@ const Add: React.FC<IAddProps> = () => {
                 </div>
 
                 <InputBlock
+                  label="km *"
+                  placeholder="km..."
+                  inputType="number"
+                  errors={errors?.km}
+                  register={register}
+                  keyRegister="km"
+                  messageRequire="incorrect km"
+                  messageRequireMin="min km 1"
+                  valueMin={1}
+                  messageRequireMax="max km 10000"
+                  valueMax={10000}
+                />
+
+                <InputBlock
                   label="hour *"
                   placeholder="hour..."
                   inputType="number"
@@ -237,20 +259,6 @@ const Add: React.FC<IAddProps> = () => {
                   messageRequireMax="max hour 24"
                   valueMax={24}
                   valueAsNumber
-                />
-
-                <InputBlock
-                  label="km *"
-                  placeholder="km..."
-                  inputType="number"
-                  errors={errors?.km}
-                  register={register}
-                  keyRegister="km"
-                  messageRequire="incorrect km"
-                  messageRequireMin="min km 1"
-                  valueMin={1}
-                  messageRequireMax="max km 10000"
-                  valueMax={10000}
                 />
               </div>
               <div className="items__input_route">

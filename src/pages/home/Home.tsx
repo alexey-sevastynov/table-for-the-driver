@@ -12,6 +12,7 @@ import { showCurrentDate } from "../../helpers/showCurrentDate";
 import { RotatingLines } from "react-loader-spinner";
 import { Link, useLocation } from "react-router-dom";
 import Button from "../../componets/button/Button";
+import { dateSearch } from "../../helpers/dateSearch";
 
 interface IHomeProps {}
 
@@ -49,44 +50,14 @@ const Home: React.FC<IHomeProps> = () => {
     apiWorks();
   }, []);
 
-  const searchWorks = items
-    .filter((item: IWork) => {
-      return (
-        (`0${item.day}` === valueSearch && item.id === 1) ||
-        (`${item.day}` === valueSearch && item.id === 1) ||
-        (`0${item.day}.` === valueSearch && item.id === 1) ||
-        (`${item.day}.` === valueSearch && item.id === 1) ||
-        (`0${item.day}.0${item.month}` === valueSearch && item.id === 1) ||
-        (`0${item.day}.${item.month}` === valueSearch && item.id === 1) ||
-        (`${item.day}.${item.month}` === valueSearch && item.id === 1) ||
-        (`${item.day}.0${item.month}` === valueSearch && item.id === 1) ||
-        (`0${item.day}.0${item.month}.${item.year.toString().slice(2)}` ===
-          valueSearch &&
-          item.id === 1) ||
-        (`${item.day}.0${item.month}.${item.year.toString().slice(2)}` ===
-          valueSearch &&
-          item.id === 1) ||
-        (`0${item.day}.${item.month}.${item.year.toString().slice(2)}` ===
-          valueSearch &&
-          item.id === 1) ||
-        (`0${item.day}.0${item.month}.${item.year}` === valueSearch &&
-          item.id === 1) ||
-        (`${item.day}.0${item.month}.${item.year}` === valueSearch &&
-          item.id === 1) ||
-        (`0${item.day}.${item.month}.${item.year}` === valueSearch &&
-          item.id === 1) ||
-        (`${item.day}.${item.month}.${item.year}` === valueSearch &&
-          item.id === 1)
-      );
-    })
-    .map((item: IWork) => (
-      <ItemMain
-        key={item._id}
-        day={item.day}
-        month={item.month}
-        year={item.year}
-      />
-    ));
+  const searchWorks = dateSearch(items, valueSearch).map((item: IWork) => (
+    <ItemMain
+      key={item._id}
+      day={item.day}
+      month={item.month}
+      year={item.year}
+    />
+  ));
 
   const dataOnWorks = items
     .filter((item: IWork) => {
