@@ -1,13 +1,13 @@
 import styled, { css } from "styled-components";
 
-export const Root = styled.div<{ isauth: boolean }>`
+export const Root = styled.div<{ isauth: string }>`
   ${({ isauth }) => css`
     position: absolute;
     bottom: 30px;
     left: 30px;
 
     display: flex;
-    cursor: ${isauth ? "unset" : "pointer"};
+    cursor: ${isauth === "true" ? "unset" : "pointer"};
 
     & div {
       display: flex;

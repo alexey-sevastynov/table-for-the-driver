@@ -28,7 +28,6 @@ const ItemMain: React.FC<IItemMainProps> = ({ day, month, year }) => {
   const date = new Date(year, month - 1, day);
 
   const removeDay = async (day: number, month: number, year: number) => {
-    console.log(day, month, year);
     if (confirm("are you really want to delete work day?")) {
       await dispatch(deleteDayWork({ day, month, year })).finally(() =>
         dispatch(fetchWorks())

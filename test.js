@@ -34,18 +34,15 @@ const obj_1 = [
 //   { year: 2025, month: [2, 9] },
 // ];
 
-const arrayAllYears = obj_1.map((item, id) => item.year);
-console.log(arrayAllYears); // ['2023', '2023', '2023','2023', '2023', '2024','2024', '2024', '2023','2025', '2025', '2025','2023']
+const arrayAllYears = obj_1.map((item, id) => item.year); // ['2023', '2023', '2023','2023', '2023', '2024','2024', '2024', '2023','2025', '2025', '2025','2023']
 
 const arrayUniqYear = arrayAllYears.filter(
   (el, id) => arrayAllYears.indexOf(el) === id
-);
-console.log(arrayUniqYear); // [ '2023', '2024', '2025' ]
+); // [ '2023', '2024', '2025' ]
 
 const newObj = arrayUniqYear.map((year) =>
   obj_1.filter((item) => item.year === year)
-);
-console.log(newObj); // =>
+); // =>
 // [
 //   [
 //     { year: '2023', month: 7, day: 5, id: 1 },
@@ -70,8 +67,7 @@ console.log(newObj); // =>
 
 const arrayMonths = arrayUniqYear.map((year, id) =>
   newObj[id].map((item) => item.month)
-);
-console.log(arrayMonths); // =>
+); // =>
 // [
 //   [7, 7, 7, 8, 5, 3, 7],
 //   [6, 6, 1],
@@ -87,9 +83,7 @@ const resultObj = arrayUniqYear
     })
   )
   .flat()
-  .filter((item) => item !== undefined);
-
-console.log(resultObj); //=>
+  .filter((item) => item !== undefined); //=>
 // [
 //   {
 //     year: '2023',

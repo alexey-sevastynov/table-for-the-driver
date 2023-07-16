@@ -80,13 +80,12 @@ const Mounths: React.FC<IMounthsProps> = () => {
         <main>
           <h3>My working months</h3>
           <div className="overflow">
-            {/* @ts-ignore */}
-            {newItems.map((item: NewItemsTypes) => {
+            {newItems.map((item: any) => {
               const showMounths = item.month
-                ?.filter((el, id) => item?.month?.indexOf(el) === id)
-                .sort((a, b) => (a > b ? 1 : -1))
-                .map((uniqMonth) => (
-                  <ItemMounth year={item.year} month={uniqMonth} />
+                ?.filter((el: any, id: any) => item?.month?.indexOf(el) === id)
+                .sort((a: any, b: any) => (a > b ? 1 : -1))
+                .map((uniqMonth: any, id: any) => (
+                  <ItemMounth key={id} year={item.year} month={uniqMonth} />
                 ));
 
               return (

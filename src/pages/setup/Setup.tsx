@@ -272,8 +272,8 @@ const Setup: React.FC<ISetupProps> = () => {
             <div className="optionTable">
               <div className="optionTable__header">
                 <p>customer</p>
-                <p>UAH/hour</p>
-                <p>UAH/km</p>
+                <p className="width_80">UAH/hour</p>
+                <p className="width_80">UAH/km</p>
               </div>
               <div className="optionTable__overflow">
                 {items.map(
@@ -285,8 +285,8 @@ const Setup: React.FC<ISetupProps> = () => {
                   }) => (
                     <div key={item.customer} className="optionTable__body">
                       <p>{item.customer}</p>
-                      <p>{item.hour}</p>
-                      <p>{item.km}</p>
+                      <p className="width_80">{item.hour}</p>
+                      <p className="width_80">{item.km}</p>
                       <Icon
                         iconName="edit"
                         onClick={() =>

@@ -62,7 +62,7 @@ export const deleteWork = createAsyncThunk<IWork, { id: string }>(
   "workDelete/fetchWorks",
   async (params) => {
     const { id } = params;
-    console.log(id);
+
     const { data } = await axios.delete(`${API_URL}jobs/${id}`);
 
     return data;
@@ -100,8 +100,6 @@ export const editWork = createAsyncThunk<IWork, IWork>(
       description,
       status,
     } = params;
-
-    console.log(params);
 
     const { data } = await axios.patch(`${API_URL}jobs/${_id}`, {
       id,

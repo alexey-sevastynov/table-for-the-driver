@@ -62,8 +62,6 @@ const DataEdit: React.FC<IDataEditProps> = ({
 
   const currentCustomer = watch("customer");
 
-  console.log(customer);
-
   const removeItem = async (id: string) => {
     if (confirm("are you want to delete item ?")) {
       await dispatch(deleteWork({ id })).finally(() => dispatch(fetchWorks()));

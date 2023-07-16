@@ -114,7 +114,7 @@ export const Root = styled.div`
                 width: 120px;
               }
               & p:nth-child(2),
-              p:nth-child(3) {
+              & p:nth-child(3) {
                 width: 80px;
               }
             }
@@ -271,7 +271,7 @@ export const Root = styled.div`
                   width: 120px;
                 }
                 & p:nth-child(2),
-                p:nth-child(3) {
+                & p:nth-child(3) {
                   width: 80px;
                 }
               }

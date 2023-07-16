@@ -51,7 +51,6 @@ const Add: React.FC<IAddProps> = () => {
       lastNumber === "4" ||
       lastNumber === "5"
     ) {
-      console.log(Math.floor(+result), "1");
       return Math.floor(+result) + 0.5;
     }
 
@@ -61,12 +60,10 @@ const Add: React.FC<IAddProps> = () => {
       lastNumber === "8" ||
       lastNumber === "9"
     ) {
-      console.log(Math.ceil(+result), "2");
       return Math.ceil(+result);
     }
 
     if (lastNumber === "0") {
-      console.log(Math.floor(+result), "3");
       return Math.floor(+result);
     }
   };
@@ -83,10 +80,8 @@ const Add: React.FC<IAddProps> = () => {
     const incomeInHours = priceOneHour * hours; // 300 UAH * 3 = 900 uah
 
     if (incomeInHours > incomeInKm) {
-      console.log(incomeInHours, "incomeInHours");
       return incomeInHours;
     } else {
-      console.log(incomeInKm, "incomeInKm");
       return incomeInKm;
     }
   };
@@ -151,8 +146,6 @@ const Add: React.FC<IAddProps> = () => {
   }, []);
 
   React.useEffect(() => {
-    console.log(currentKm, currentCustomer, currentHour);
-
     setValue(
       "hours",
       tKmToHours(currentCustomer || "Invatech", currentKm) || 0

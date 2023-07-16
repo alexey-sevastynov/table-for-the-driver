@@ -18,7 +18,7 @@ const Item: React.FC<ItemProps> = ({ day, month, year, items }) => {
     .sort((a: IWork, b: IWork) => (a.id > b.id ? 1 : -1))
     .map((item: IWork) => {
       return (
-        <div className="statistics__item">
+        <div key={item._id} className="statistics__item">
           <p className="statistics__item-id">{item.id}</p>
           <p className="statistics__item-customer">{item.customer}</p>
           <div className="statistics__item-hours">
@@ -30,7 +30,11 @@ const Item: React.FC<ItemProps> = ({ day, month, year, items }) => {
             <p>км,</p>
           </div>
           <div className="statistics__item-income">
-            <p>{item.income}</p>
+            <p>
+              {item.status === 1 || item.status === 4
+                ? `+${item.income}`
+                : item.income}
+            </p>
             <p>грн,</p>
           </div>
 
