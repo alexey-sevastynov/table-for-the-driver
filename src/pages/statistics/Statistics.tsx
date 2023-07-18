@@ -52,7 +52,11 @@ const Statistics: React.FC<IStatisticsProps> = () => {
     (item: IWork) => currentMonth === item.month && currentYear === item.year
   );
 
-  const summWorkDays = workDays.length;
+  const summWorkDaysStatus_4 = workDays.filter(
+    (item: IWork) => item.status === 4
+  ).length;
+
+  const summWorkDays = workDays.length - summWorkDaysStatus_4;
 
   const totalSumMoney = worksDay.reduce(
     //@ts-ignore

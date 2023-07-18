@@ -26,6 +26,7 @@ export const Root = styled.div`
         & .flex {
           display: flex;
           flex-wrap: wrap;
+          justify-content: space-between;
           
         }
 

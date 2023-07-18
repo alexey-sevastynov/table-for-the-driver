@@ -89,6 +89,7 @@ export const Root = styled(Link)`
     & h5 {
       /* text-align: center; */
       line-height: 30px;
+      font-size: 12px;
     }
   `};
 `;
