@@ -1,5 +1,6 @@
 import React from "react";
 import * as S from "./styles";
+import axios from "axios";
 
 import { useForm } from "react-hook-form";
 import {
@@ -10,10 +11,15 @@ import {
 } from "../../redux/slices/worksSlice";
 import Button from "../button/Button";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { CHAD_ID, URL_API } from "../../constants";
+import { showDate } from "../../helpers/showDate";
 
 interface IDataEditProps {
   id: number;
   _id: string;
+  day: number;
+  month: number;
+  year: number;
   customer: string;
   route?: string;
   hours: number;
@@ -27,6 +33,9 @@ interface IDataEditProps {
 const DataEdit: React.FC<IDataEditProps> = ({
   id,
   _id,
+  day,
+  month,
+  year,
   status,
   customer,
   route,
@@ -65,6 +74,20 @@ const DataEdit: React.FC<IDataEditProps> = ({
   const removeItem = async (id: string) => {
     if (confirm("are you want to delete item ?")) {
       await dispatch(deleteWork({ id })).finally(() => dispatch(fetchWorks()));
+
+      let message = `<b>DELETE work: ${showDate(day, month, year)}</b>\n`;
+      message += `${customer}: ${km} km, ${hours} hours`;
+
+      axios
+        .post(URL_API, {
+          chat_id: CHAD_ID,
+          parse_mode: "html",
+          text: message,
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {});
     }
   };
 
@@ -73,6 +96,26 @@ const DataEdit: React.FC<IDataEditProps> = ({
 
     await dispatch(editWork({ ...data, status, _id })).finally(() => {
       dispatch(fetchWorks());
+
+      let message = `<b>EDIT work: ${showDate(day, month, year)}</b>\n`;
+      message += `${customer}: ${hours} hours, ${km} km\n`;
+      message += route && `route: ${route}\n`;
+      message += `income: ${
+        +status === 1 || +status === 4 ? `+${income} uah` : `${income} uah`
+      }\n`;
+      message +=
+        expenditure && `expenditure: ${expenditure} uah, ${description} \n`;
+
+      axios
+        .post(URL_API, {
+          chat_id: CHAD_ID,
+          parse_mode: "html",
+          text: message,
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {});
     });
   };
 

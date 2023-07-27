@@ -38,3 +38,7 @@ export const dayNames = [
   "Friday",
   "Saturday",
 ];
+
+const TOKEN = "6678507899:AAGZvkE_po21_5HCpdhWbWP1NpfnztVHcXM";
+export const CHAD_ID = "-1001912180400";
+export const URL_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;

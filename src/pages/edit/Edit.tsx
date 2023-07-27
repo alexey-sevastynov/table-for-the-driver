@@ -56,6 +56,9 @@ const Edit: React.FC<IEditProps> = () => {
                   <DataEdit
                     key={item.id}
                     _id={item._id}
+                    day={item.day}
+                    month={item.month}
+                    year={item.year}
                     id={++idnew}
                     customer={item.customer}
                     route={item.route}

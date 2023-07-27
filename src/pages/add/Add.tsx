@@ -15,6 +15,9 @@ import {
 import InputBlock from "../../componets/input-block/InputBlock";
 import { Link } from "react-router-dom";
 import { fetchAllOptions } from "../../redux/slices/customerSlice";
+import axios from "axios";
+import { showDate } from "../../helpers/showDate";
+import { CHAD_ID, URL_API } from "../../constants";
 
 interface IAddProps {}
 
@@ -141,6 +144,31 @@ const Add: React.FC<IAddProps> = () => {
     await dispatch(fetchWorks());
 
     reset();
+    let message = `<b>${showDate(data.day, data.month, data.year)}</b>\n`;
+    message += `${newId} work. ${data.customer}: ${data.hours} hours, ${data.km} km\n`;
+    message += data.route && `route: ${data.route}\n`;
+    message += `income: ${
+      +data.status === 1 || +data.status === 4
+        ? `+${data.income} uah`
+        : `${data.income} uah`
+    }\n`;
+    message +=
+      data.expenditure &&
+      `expenditure: ${data.expenditure} uah, ${data.description} \n`;
+
+    axios
+      .post(URL_API, {
+        chat_id: CHAD_ID,
+        parse_mode: "html",
+        text: message,
+      })
+      .then(() => {
+        // setTel("");
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {});
   };
 
   React.useEffect(() => {

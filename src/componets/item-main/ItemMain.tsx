@@ -1,7 +1,8 @@
 import React from "react";
+import axios from "axios";
 
 import * as S from "./styles";
-import { tableHadeNames } from "../../constants";
+import { CHAD_ID, URL_API, tableHadeNames } from "../../constants";
 import Data from "../Data/Data";
 
 import { showDate } from "../../helpers/showDate";
@@ -32,6 +33,19 @@ const ItemMain: React.FC<IItemMainProps> = ({ day, month, year }) => {
       await dispatch(deleteDayWork({ day, month, year })).finally(() =>
         dispatch(fetchWorks())
       );
+
+      let message = `<b>DELETE WORK DAY: ${showDate(day, month, year)}</b>\n`;
+
+      axios
+        .post(URL_API, {
+          chat_id: CHAD_ID,
+          parse_mode: "html",
+          text: message,
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {});
     }
   };
 
