@@ -20,7 +20,7 @@ const Button: React.FC<IButtonProps> = ({
     <S.Root
       className={isUnActive ? "unActive" : ""}
       onClick={click}
-      type={label === "edit" ? "button" : "submit"}
+      type={label === "edit" || label === "delete" ? "button" : "submit"}
       {...props}
     >
       {label}

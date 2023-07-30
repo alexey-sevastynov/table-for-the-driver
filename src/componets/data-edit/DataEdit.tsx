@@ -69,6 +69,17 @@ const DataEdit: React.FC<IDataEditProps> = ({
     },
   });
 
+  console.log(
+    id,
+    customer,
+    route,
+    hours,
+    income,
+    expenditure,
+    description,
+    status
+  );
+
   const currentCustomer = watch("customer");
 
   const removeItem = async (id: string) => {
@@ -104,7 +115,9 @@ const DataEdit: React.FC<IDataEditProps> = ({
         +status === 1 || +status === 4 ? `+${income} uah` : `${income} uah`
       }\n`;
       message +=
-        expenditure && `expenditure: ${expenditure} uah, ${description} \n`;
+        expenditure !== null || expenditure !== undefined
+          ? `expenditure: ${expenditure} uah, ${description} \n`
+          : "";
 
       axios
         .post(URL_API, {
