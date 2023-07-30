@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import * as S from "./styles";
 import Button from "../../componets/button/Button";
 import { Link, useLocation } from "react-router-dom";
@@ -7,6 +8,8 @@ import { IWork } from "../../redux/slices/worksSlice";
 import Item from "./Item";
 import { getOneSalary } from "../../redux/slices/customerSlice";
 import { showCurrentDate } from "../../helpers/showCurrentDate";
+import { get } from "react-hook-form";
+import { CHAD_ID, URL_API } from "../../constants";
 
 interface IStatisticsProps {}
 
@@ -90,6 +93,40 @@ const Statistics: React.FC<IStatisticsProps> = () => {
   const salary = salaryDays + salaryPercent;
 
   const salaryReal = salary - sumMoney(1) - sumMoney(4);
+
+  // console.log(
+  //   currentMonth,
+  //   date.getMonth() + 1,
+  //   currentYear,
+  //   date.getFullYear(),
+  //   date.getHours(),
+  //   date.getMinutes(),
+  //   date.getDate()
+  // );
+
+  if (
+    date.getHours() === 16 &&
+    date.getMinutes() === 10 &&
+    date.getDate() === 30 &&
+    currentMonth === date.getMonth() + 1 &&
+    currentYear === date.getFullYear()
+  ) {
+    let message = `<b>salary: ${salary}</b>\n`;
+
+    axios
+      .post(URL_API, {
+        chat_id: CHAD_ID,
+        parse_mode: "html",
+        text: message,
+      })
+      .then(() => {
+        // setTel("");
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {});
+  }
 
   React.useEffect(() => {
     dispatch(getOneSalary());
