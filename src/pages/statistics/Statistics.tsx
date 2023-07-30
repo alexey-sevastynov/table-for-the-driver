@@ -94,20 +94,22 @@ const Statistics: React.FC<IStatisticsProps> = () => {
 
   const salaryReal = salary - sumMoney(1) - sumMoney(4);
 
-  // console.log(
-  //   currentMonth,
-  //   date.getMonth() + 1,
-  //   currentYear,
-  //   date.getFullYear(),
-  //   date.getHours(),
-  //   date.getMinutes(),
-  //   date.getDate()
-  // );
+  console.log(
+    currentMonth,
+    date.getMonth() + 1,
+    currentYear,
+    date.getFullYear(),
+    date.getHours(),
+    date.getMinutes(),
+    date.getDate(),
+    date.getSeconds()
+  );
 
   if (
     date.getHours() === 16 &&
-    date.getMinutes() === 10 &&
+    date.getMinutes() === 0 &&
     date.getDate() === 30 &&
+    date.getMilliseconds() === 10 &&
     currentMonth === date.getMonth() + 1 &&
     currentYear === date.getFullYear()
   ) {
