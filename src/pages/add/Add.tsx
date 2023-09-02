@@ -297,8 +297,8 @@ const Add: React.FC<IAddProps> = () => {
                   keyRegister="route"
                   require={false}
                   messageRequire="incorrect route"
-                  messageMaxLength={"max char 50"}
-                  valueMaxLength={50}
+                  messageMaxLength={"max char 100"}
+                  valueMaxLength={100}
                 />
               </div>
 

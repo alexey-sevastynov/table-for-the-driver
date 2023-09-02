@@ -33,10 +33,10 @@ export const Root = styled.div`
 
         }
 
-        & .overflow::-webkit-scrollbar {
+        /* & .overflow::-webkit-scrollbar {
           width: 0;
           height: 0;
-        }
+        } */
 
         & .header {
           display: flex;

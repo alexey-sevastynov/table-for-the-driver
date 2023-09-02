@@ -121,6 +121,37 @@ button{
     box-sizing: border-box;
 }
 
+
+          *::-webkit-scrollbar {
+            width: 7px;
+            width: 7px;
+          }
+          *::-webkit-scrollbar-track {
+            border-radius: 4px;
+            background-color: #ffffff;
+          }
+
+          *::-webkit-scrollbar-track:hover {
+            background-color: #ffffff;
+          }
+
+          *::-webkit-scrollbar-track:active {
+            background-color: #ffffff;
+          }
+
+          *::-webkit-scrollbar-thumb {
+            border-radius: 20px;
+            background-color: ${(props) => props.theme.colors.violet};
+          }
+
+          *::-webkit-scrollbar-thumb:hover {
+            background-color: ${(props) => props.theme.colors.violet};
+          }
+
+          *::-webkit-scrollbar-thumb:active {
+            background-color: ${(props) => props.theme.colors.violet};
+          }
+        
 `;
 
 export default ResetStyles;

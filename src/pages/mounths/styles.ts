@@ -35,10 +35,7 @@ export const Root = styled.div`
           overflow: scroll;
         }
 
-        & .overflow::-webkit-scrollbar {
-          width: 0;
-          height: 0;
-        }
+      
 
     
          

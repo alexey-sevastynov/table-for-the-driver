@@ -23,8 +23,14 @@ export const Root = styled.div`
         height: calc(100vh - 120px);
 
         & .overflow {
+          position: relative;
           height: calc(100% - 80px);
-          overflow: scroll;
+          overflow-y: scroll;
+
+          & .overflow::-webkit-scrollbar {
+            position: absolute;
+            left: 50px;
+          }
 
           & .center {
             height: 100%;
@@ -37,11 +43,6 @@ export const Root = styled.div`
             margin-top: 50px;
             float: right;
           }
-        }
-
-        & .overflow::-webkit-scrollbar {
-          width: 0;
-          height: 0;
         }
 
         & .header {

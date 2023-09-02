@@ -32,10 +32,10 @@ export const Root = styled.div`
           }
         }
 
-        & .overflow::-webkit-scrollbar {
+        /* & .overflow::-webkit-scrollbar {
           width: 0;
           height: 0;
-        }
+        } */
 
         & h3 {
           line-height: 23px;

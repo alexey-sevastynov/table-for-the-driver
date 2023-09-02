@@ -97,10 +97,10 @@ export const Root = styled.div`
 
               overflow-y: scroll;
             }
-            &__overflow::-webkit-scrollbar {
+            /* &__overflow::-webkit-scrollbar {
               width: 0;
               height: 0;
-            }
+            } */
             &__body {
               line-height: 36px;
             }
