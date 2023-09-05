@@ -33,6 +33,7 @@ export const Root = styled.div`
           }
 
           & .center {
+            overflow: hidden;
             height: 100%;
             display: flex;
             justify-content: center;
@@ -109,16 +110,18 @@ export const Root = styled.div`
           min-height: calc(100vh - 154px);
 
           & .overflow {
+            height: 100%;
+
             & .searchHelp {
               text-align: justify;
               padding: 0px 10px;
             }
 
             & .center {
-              position: absolute;
+              /* position: absolute;
               top: 10%;
               left: 50%;
-              transform: translateX(-50%);
+              transform: translateX(-50%); */
               height: 100%;
               display: flex;
               justify-content: center;
