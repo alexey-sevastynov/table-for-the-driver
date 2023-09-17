@@ -101,7 +101,7 @@ export const Root = styled.div`
         & h2 {
           padding: 30px 0px 20px 20px;
         }
-        & main {
+        main {
           margin-left: 10px;
           margin-right: 10px;
           padding: 60px 0px 20px 0px;
@@ -109,8 +109,9 @@ export const Root = styled.div`
 
           min-height: calc(100vh - 154px);
 
-          & .overflow {
+          .overflow {
             height: 100%;
+            overflow-y: hidden;
 
             & .searchHelp {
               text-align: justify;
