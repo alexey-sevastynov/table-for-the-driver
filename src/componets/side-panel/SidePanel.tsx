@@ -22,6 +22,9 @@ const SidePanel: React.FC<ISidePanelProps> = () => {
             link="/table-for-the-driver/"
           />
           <ButttonLink icon="months" title="months" link="/months" />
+          {isAuth && (
+            <ButttonLink icon="months" title="calendar" link="/calendar" />
+          )}
           {isAuth && <ButttonLink icon="setup" title="setup" link="/setup" />}
         </div>
 
