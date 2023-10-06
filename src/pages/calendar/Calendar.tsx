@@ -12,7 +12,7 @@ export const Calendar = () => {
   const calendarId =
     "a74d84041aec6206997b22c03dc8990f3e83f6ebc5d53cb2228fe291c0fb2407@group.calendar.google.com";
   // const calendarId = "primary";
-  const apiKey = "AIzaSyA7fJvHGXVhnf58SIfZf7pqE8L4TEoixMA"; // Replace with your Google API key
+  const apiKey = import.meta.env.API_GOOGLE_CALENDAR;
 
   const [start, setStart] = React.useState(new Date());
   const [end, setEnd] = React.useState(new Date());
