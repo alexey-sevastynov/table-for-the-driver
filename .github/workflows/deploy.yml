@@ -1,7 +1,8 @@
 # Simple workflow for deploying static content to GitHub Pages
 name: Deploy static content to Pages
 
-env: API_GOOGLE_CALENDAR
+env:
+  API_GOOGLE_CALENDAR: ../../keys.env
 
 on:
   # Runs on pushes targeting the default branch
