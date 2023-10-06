@@ -2,7 +2,7 @@
 name: Deploy static content to Pages
 
 env:
-  API_GOOGLE_CALENDAR: ../../keys.env
+  API_GOOGLE_CALENDAR: AIzaSyA7fJvHGXVhnf58SIfZf7pqE8L4TEoixMA
 
 on:
   # Runs on pushes targeting the default branch
