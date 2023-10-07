@@ -56,7 +56,6 @@ export const MyCalendar = () => {
     handleSubmit,
 
     getValues,
-    formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
