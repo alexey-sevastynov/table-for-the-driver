@@ -10,7 +10,7 @@ import Day from "./pages/day/Day";
 import Edit from "./pages/edit/Edit";
 import Setup from "./pages/setup/Setup";
 import Statistics from "./pages/statistics/Statistics";
-import { Calendar } from "./pages/calendar/Calendar";
+import { MyCalendar } from "./pages/calendar/MyCalendar";
 
 function App() {
   const isAuth = useAppSelector((props) => props.works.isAuth);
@@ -19,7 +19,7 @@ function App() {
       <Routes>
         <Route path={ROUTES.HOME} element={<Home />} />
         <Route path={ROUTES.MOUNTHS} element={<Mounths />} />
-        <Route path={ROUTES.CALENDAR} element={<Calendar />} />
+        <Route path={ROUTES.CALENDAR} element={<MyCalendar />} />
         {isAuth && <Route path={ROUTES.ADD} element={<Add />} />}
         <Route path={ROUTES.DAY} element={<Day />} />
         {isAuth && <Route path={ROUTES.EDIT} element={<Edit />} />}
