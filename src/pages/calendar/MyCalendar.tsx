@@ -54,7 +54,7 @@ export const MyCalendar = () => {
   const {
     register,
     handleSubmit,
-    watch,
+
     getValues,
     formState: { errors },
   } = useForm<Inputs>();
@@ -111,7 +111,14 @@ export const MyCalendar = () => {
   }
 
   async function createCalendarEvent() {
-    if (customer && valueDate && valueTimeStart && valueTimeFinish) {
+    if (
+      customer &&
+      valueDate &&
+      valueTimeStart &&
+      valueTimeFinish &&
+      typeof valueDate === "object" &&
+      valueDate instanceof Date
+    ) {
       const year = valueDate.getFullYear();
       const month = valueDate.getMonth();
       const day = valueDate.getDate();
