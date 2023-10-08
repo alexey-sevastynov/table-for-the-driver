@@ -35,13 +35,18 @@ const HeaderMobile: React.FC<IHeaderMobileProps> = () => {
               link="/table-for-the-driver/"
             />
             <ButttonLink icon="months" title="months" link="/months" />
+            <ButttonLink
+              icon="google-calendar"
+              title="events"
+              link="/calendar"
+              sizeIcon_25
+            />
           </div>
 
           {isAuth && (
             <div>
               <ButttonLink icon="setup" title="setup" link="/setup" />
               <ButttonLink icon="add" title="add item" link="/add" />
-              <ButttonLink icon="months" title="calendar" link="/calendar" />
             </div>
           )}
         </nav>

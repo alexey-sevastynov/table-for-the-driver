@@ -6,22 +6,22 @@ import {
   useSessionContext,
 } from "@supabase/auth-helpers-react";
 
-import TimePicker from "react-time-picker";
-import "react-time-picker/dist/TimePicker.css";
-
 import { useForm, SubmitHandler } from "react-hook-form";
+
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { fetchAllOptions } from "../../redux/slices/customerSlice";
-import { CARS } from "../../constants";
 
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
+import { getMonth } from "../../helpers/getMonth";
+import { CalendarHeader } from "../../componets/calendar-header/CalendarHeader";
+
+import { CalendarMonth } from "../../componets/calendar-month/CalendarMonth";
+import { CalendarAddEvent } from "../../componets/calendar-add-event/CalendarAddEvent";
 
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-type Inputs = {
+export type Inputs = {
   customerInput: string;
   customerSelect: string;
   addressStart: string;
@@ -29,7 +29,8 @@ type Inputs = {
 };
 
 export const MyCalendar = () => {
-  const listCustomers = useAppSelector((state) => state.customer.items);
+  const monthIndex = useAppSelector((state) => state.calendar.monthIndex);
+  const isOpenPopup = useAppSelector((state) => state.calendar.isOpenPopup);
   const dispatch = useAppDispatch();
 
   const calendarId =
@@ -37,7 +38,7 @@ export const MyCalendar = () => {
   // const calendarId = "primary";
   const apiKey = " AIzaSyA7fJvHGXVhnf58SIfZf7pqE8L4TEoixMA";
 
-  const [car, setCar] = React.useState("Any");
+  const [car, setCar] = React.useState<"Reno" | "Mercedes" | "Any">("Any");
   const [valueDate, onChangeDate] = React.useState<Value>(new Date());
   const [valueTimeStart, onChangeTimeStart] = React.useState<string | null>(
     "9:00"
@@ -46,18 +47,17 @@ export const MyCalendar = () => {
     "11:00"
   );
 
+  const [currentMonth, setCurrentMonth] = React.useState(getMonth());
+
+  const [dataEvent, setDataEvent] = React.useState([]);
+
   const session = useSession(); // tokens
   const supabase = useSupabaseClient(); // talk to supabase
 
   const { isLoading } = useSessionContext();
 
-  const {
-    register,
-    handleSubmit,
-
-    getValues,
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const { register, handleSubmit, getValues } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = () => {};
 
   const customerInput = getValues("customerInput");
   const customerSelect = getValues("customerSelect");
@@ -101,7 +101,7 @@ export const MyCalendar = () => {
       }
 
       const data = await response.json();
-      console.log(data.items);
+      setDataEvent(data.items);
       // Handle the data, which will contain information about the calendar's events.
     } catch (error) {
       console.error(error);
@@ -165,91 +165,53 @@ export const MyCalendar = () => {
         .then((data) => {
           console.log(data);
           alert("Event created, check your Google Calendar");
-        });
+        })
+        .finally(() => getCalendarEvents());
     }
   }
 
   React.useEffect(() => {
     dispatch(fetchAllOptions());
+    getCalendarEvents();
   }, []);
 
+  React.useEffect(() => {
+    setCurrentMonth(getMonth(monthIndex));
+  }, [monthIndex]);
+
   return (
-    <S.Root onSubmit={handleSubmit(onSubmit)}>
+    <S.Root onSubmit={handleSubmit(onSubmit)} popupActive>
       {session ? (
-        <>
-          <h2>Hey there {session.user.email}</h2>
-          <div className="calendar__customer">
-            <input
-              type="text"
-              placeholder="input customer..."
-              {...register("customerInput")}
+        <div>
+          <CalendarHeader />
+          {isOpenPopup && (
+            <CalendarAddEvent
+              session={session}
+              register={register}
+              onChangeTimeStart={onChangeTimeStart}
+              valueTimeStart={valueTimeStart}
+              onChangeTimeFinish={onChangeTimeFinish}
+              valueTimeFinish={valueTimeFinish}
+              setCar={setCar}
+              car={car}
+              onChangeDate={onChangeDate}
+              valueDate={valueDate}
+              createCalendarEvent={createCalendarEvent}
             />
-            <select {...register("customerSelect")}>
-              {listCustomers.map(({ _id, customer }) => (
-                <option key={_id} value={customer}>
-                  {customer}
-                </option>
-              ))}
-            </select>
+          )}
+          <div className="my-calendar__main">
+            <CalendarMonth month={currentMonth} dataEvent={dataEvent} />
           </div>
-
-          <div className="calendar__time">
-            <p>start time:</p>
-            <TimePicker onChange={onChangeTimeStart} value={valueTimeStart} />
-          </div>
-          <div className="calendar__time">
-            <p>finish time:</p>
-            <TimePicker onChange={onChangeTimeFinish} value={valueTimeFinish} />
-          </div>
-
-          <div className="calendar__car">
-            <ul>
-              {CARS.map((itemCar) => (
-                <li
-                  key={itemCar}
-                  onClick={() => setCar(itemCar)}
-                  className={`${itemCar === car ? "active" : ""}`}
-                >
-                  {itemCar}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="calendar__date">
-            <Calendar onChange={onChangeDate} value={valueDate} locale="en" />
-          </div>
-
-          <div className="calendar__customer">
-            <input
-              type="text"
-              {...register("addressStart")}
-              placeholder="the place start..."
-            />
-          </div>
-
-          <div className="calendar__description">
-            <textarea {...register("description")} />
-          </div>
-
-          <button className="btn" onClick={() => createCalendarEvent()}>
-            Create Calendar Event
-          </button>
-          <button className="btn" onClick={() => getCalendarEvents()}>
-            get request
-          </button>
-          <p></p>
-          <button className="btn" onClick={() => signOut()}>
-            Sign Out
-          </button>
-        </>
+        </div>
       ) : (
-        <>
-          <button className="btn" onClick={() => googleSignIn()}>
-            Sign In With Google
-          </button>
-        </>
+        <button className="btn" onClick={() => googleSignIn()}>
+          Sign In With Google
+        </button>
       )}
+
+      <button className="btn" onClick={() => signOut()}>
+        Sign Out
+      </button>
     </S.Root>
   );
 };

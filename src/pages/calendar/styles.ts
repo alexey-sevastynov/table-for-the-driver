@@ -1,8 +1,11 @@
 import styled, { css } from "styled-components";
 
-export const Root = styled.form`
+type TypeProps = {
+  popupActive: boolean;
+};
+
+export const Root = styled.section<TypeProps>`
   ${({ theme }) => css`
-    background-color: yellow;
     padding: 0px 5px;
 
     & h2 {
