@@ -10,13 +10,14 @@ interface IButttonLinkProps {
   title: string;
 
   link: string;
+  sizeIcon_25?: boolean;
 }
 
 const ButttonLink: React.FC<IButttonLinkProps> = ({
   icon,
   title,
-
   link,
+  sizeIcon_25,
 }) => {
   const location = useLocation().pathname;
   const isPageActive = location === link;
@@ -32,7 +33,12 @@ const ButttonLink: React.FC<IButttonLinkProps> = ({
         };
       }}
     >
-      <Icon iconName={icon} className={isPageActive ? "active" : ""} />
+      <Icon
+        iconName={icon}
+        className={isPageActive ? "active" : ""}
+        height={sizeIcon_25 ? 25 : 25}
+        width={sizeIcon_25 ? 25 : 25}
+      />
       {title}
     </S.Root>
   );

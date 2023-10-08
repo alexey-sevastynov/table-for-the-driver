@@ -22,9 +22,13 @@ const SidePanel: React.FC<ISidePanelProps> = () => {
             link="/table-for-the-driver/"
           />
           <ButttonLink icon="months" title="months" link="/months" />
-          {isAuth && (
-            <ButttonLink icon="months" title="calendar" link="/calendar" />
-          )}
+          <ButttonLink
+            icon="google-calendar"
+            title="events"
+            link="/calendar"
+            sizeIcon_25
+          />
+
           {isAuth && <ButttonLink icon="setup" title="setup" link="/setup" />}
         </div>
 
