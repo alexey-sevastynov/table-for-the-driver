@@ -7,7 +7,7 @@ import { openPopup } from "../../redux/slices/calendarSlice";
 
 interface CreateEventButtonProps {}
 
-export const CreateEventButton: React.FC<CreateEventButtonProps> = (props) => {
+export const CreateEventButton: React.FC<CreateEventButtonProps> = () => {
   const dispatch = useAppDispatch();
 
   return (

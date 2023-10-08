@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { IWork } from "./worksSlice";
+import { createSlice } from "@reduxjs/toolkit";
+
 import dayjs from "dayjs";
 
 type TypeInitialState = {

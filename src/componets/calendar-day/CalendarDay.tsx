@@ -11,7 +11,7 @@ interface CalendarDayProps {
 
 export const CalendarDay: React.FC<CalendarDayProps> = ({
   day,
-  rowIdx,
+  // rowIdx,
   children,
 }) => {
   const styleSelectWeekend =
