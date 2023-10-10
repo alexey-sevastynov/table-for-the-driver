@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface DivProps {
-  active?: boolean;
+  active?: boolean | undefined;
 }
 
 export const Root = styled.div<DivProps>`

@@ -33,10 +33,10 @@ export const MyCalendar = () => {
   const isOpenPopup = useAppSelector((state) => state.calendar.isOpenPopup);
   const dispatch = useAppDispatch();
 
-  const calendarId =
-    "a74d84041aec6206997b22c03dc8990f3e83f6ebc5d53cb2228fe291c0fb2407@group.calendar.google.com";
+  const calendarId = import.meta.env.VITE_CALENDAR_ID;
   // const calendarId = "primary";
-  const apiKey = " AIzaSyA7fJvHGXVhnf58SIfZf7pqE8L4TEoixMA";
+  const apiKey = import.meta.env.VITE_API_GOOGLE_CALENDAR;
+  const TOKEN = import.meta.env.VITE_MY_TOKEN;
 
   const [car, setCar] = React.useState<"Reno" | "Mercedes" | "Any">("Any");
   const [valueDate, onChangeDate] = React.useState<Value>(new Date());
@@ -92,7 +92,8 @@ export const MyCalendar = () => {
       const response = await fetch(url, {
         method: "GET",
         headers: {
-          Authorization: "Bearer " + session?.provider_token,
+          // Authorization: "Bearer " + session?.provider_token,
+          Authorization: "Bearer " + TOKEN,
         },
       });
 
@@ -129,9 +130,6 @@ export const MyCalendar = () => {
 
       const start = new Date(year, month, day, hourStart, minutesFinish, 0);
       const finish = new Date(year, month, day, hourFinish, minutesStart, 0);
-
-      console.log(start);
-      console.log(finish);
 
       const startPoint = getValues("addressStart");
       const eventDescription = getValues("description");

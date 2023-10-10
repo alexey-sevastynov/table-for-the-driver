@@ -111,8 +111,6 @@ const Add: React.FC<IAddProps> = () => {
   const currentHour = watch("hours");
   const currentStatus = +watch("status");
 
-  console.log(currentCustomer);
-
   const onSubmit = async (data: fetchPostWorkArgs) => {
     const possibleObjs = items.filter((item: fetchPostWorkArgs) =>
       item.year === +data.year &&

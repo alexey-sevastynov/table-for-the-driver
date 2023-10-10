@@ -12,9 +12,6 @@ export const CalendarMonth: React.FC<CalendarMonthProps> = ({
   month,
   dataEvent,
 }) => {
-  console.log(month);
-  console.log(dataEvent);
-
   return (
     <S.Root>
       {month.map((row, i) => (
