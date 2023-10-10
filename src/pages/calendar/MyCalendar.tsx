@@ -36,7 +36,7 @@ export const MyCalendar = () => {
   const calendarId = import.meta.env.VITE_CALENDAR_ID;
   // const calendarId = "primary";
   const apiKey = import.meta.env.VITE_API_GOOGLE_CALENDAR;
-  const TOKEN = import.meta.env.VITE_MY_TOKEN;
+  // const TOKEN = import.meta.env.VITE_MY_TOKEN;
 
   const [car, setCar] = React.useState<"Reno" | "Mercedes" | "Any">("Any");
   const [valueDate, onChangeDate] = React.useState<Value>(new Date());
@@ -92,8 +92,8 @@ export const MyCalendar = () => {
       const response = await fetch(url, {
         method: "GET",
         headers: {
-          // Authorization: "Bearer " + session?.provider_token,
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + session?.provider_token,
+          // Authorization: "Bearer " + TOKEN,
         },
       });
 
