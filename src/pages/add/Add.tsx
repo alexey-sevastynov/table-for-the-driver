@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 import { fetchAllOptions } from "../../redux/slices/customerSlice";
 import axios from "axios";
 import { showDate } from "../../helpers/showDate";
-import { CHAD_ID, URL_API } from "../../constants";
+import { URL_API } from "../../constants";
 import { showStatus } from "../../helpers/showStatus";
 
 interface IAddProps {}
@@ -158,7 +158,7 @@ const Add: React.FC<IAddProps> = () => {
 
     axios
       .post(URL_API, {
-        chat_id: CHAD_ID,
+        chat_id: import.meta.env.VITE_VITE_CHAD_ID,
         parse_mode: "html",
         text: message,
       })

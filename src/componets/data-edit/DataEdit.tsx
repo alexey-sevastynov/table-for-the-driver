@@ -11,7 +11,7 @@ import {
 } from "../../redux/slices/worksSlice";
 import Button from "../button/Button";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
-import { CHAD_ID, URL_API } from "../../constants";
+import { URL_API } from "../../constants";
 import { showDate } from "../../helpers/showDate";
 
 interface IDataEditProps {
@@ -91,7 +91,7 @@ const DataEdit: React.FC<IDataEditProps> = ({
 
       axios
         .post(URL_API, {
-          chat_id: CHAD_ID,
+          chat_id: import.meta.env.VITE_VITE_CHAD_ID,
           parse_mode: "html",
           text: message,
         })
@@ -121,7 +121,7 @@ const DataEdit: React.FC<IDataEditProps> = ({
 
       axios
         .post(URL_API, {
-          chat_id: CHAD_ID,
+          chat_id: import.meta.env.VITE_VITE_CHAD_ID,
           parse_mode: "html",
           text: message,
         })

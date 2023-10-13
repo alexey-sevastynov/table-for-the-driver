@@ -40,8 +40,8 @@ export const dayNames = [
   "Saturday",
 ];
 
-const TOKEN = "6678507899:AAGZvkE_po21_5HCpdhWbWP1NpfnztVHcXM";
-export const CHAD_ID = "-1001912180400";
+const TOKEN = import.meta.env.VITE_TOKEN;
+
 export const URL_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
 
 export const CARS = ["Reno", "Mercedes", "Any"];
