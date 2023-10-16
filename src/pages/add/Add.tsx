@@ -167,6 +167,7 @@ const Add: React.FC<IAddProps> = () => {
       })
       .catch((err) => {
         console.log(err);
+        console.log(import.meta.env.VITE_TOKEN);
       })
       .finally(() => {});
   };

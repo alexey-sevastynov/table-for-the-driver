@@ -40,8 +40,6 @@ export const dayNames = [
   "Saturday",
 ];
 
-export const URL_API = `https://api.telegram.org/bot${
-  import.meta.env.VITE_TOKEN
-}/sendMessage`;
+export const URL_API = `https://api.telegram.org/bot${1234}/sendMessage`;
 
 export const CARS = ["Reno", "Mercedes", "Any"];
