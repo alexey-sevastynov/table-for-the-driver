@@ -51,7 +51,7 @@ export const CalendarAddEvent: React.FC<CalendarAddEventProps> = ({
         <MdClose />
       </button>
 
-      <h2>Hey there {session.user.email}</h2>
+      {/* <h2>Hey there {session.user.email}</h2> */}
       <main>
         <div>
           <div className="calendar__customer">
@@ -102,6 +102,13 @@ export const CalendarAddEvent: React.FC<CalendarAddEventProps> = ({
           type="text"
           {...register("addressStart")}
           placeholder="the place start..."
+        />
+      </div>
+      <div className="calendar__customer">
+        <input
+          type="text"
+          {...register("addressEnd")}
+          placeholder="the place finish..."
         />
       </div>
 

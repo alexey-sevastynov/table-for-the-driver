@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "./styles";
 import {
   useSession,
-  useSupabaseClient,
+  // useSupabaseClient,
   useSessionContext,
 } from "@supabase/auth-helpers-react";
 
@@ -16,6 +16,10 @@ import { CalendarHeader } from "../../componets/calendar-header/CalendarHeader";
 
 import { CalendarMonth } from "../../componets/calendar-month/CalendarMonth";
 import { CalendarAddEvent } from "../../componets/calendar-add-event/CalendarAddEvent";
+import {
+  fetchAllEvents,
+  fetchPostEvents,
+} from "../../redux/slices/calendarSlice";
 
 type ValuePiece = Date | null;
 
@@ -25,17 +29,20 @@ export type Inputs = {
   customerInput: string;
   customerSelect: string;
   addressStart: string;
+  addressEnd: string;
   description: string;
 };
 
 export const MyCalendar = () => {
   const monthIndex = useAppSelector((state) => state.calendar.monthIndex);
   const isOpenPopup = useAppSelector((state) => state.calendar.isOpenPopup);
+  const allEvents = useAppSelector((state) => state.calendar.allEvents);
   const dispatch = useAppDispatch();
+  console.log(allEvents);
 
-  const calendarId = import.meta.env.VITE_CALENDAR_ID;
+  // const calendarId = import.meta.env.VITE_CALENDAR_ID;
   // const calendarId = "primary";
-  const apiKey = import.meta.env.VITE_API_GOOGLE_CALENDAR;
+  // const apiKey = import.meta.env.VITE_API_GOOGLE_CALENDAR;
   // const TOKEN = import.meta.env.VITE_MY_TOKEN;
 
   const [car, setCar] = React.useState<"Reno" | "Mercedes" | "Any">("Any");
@@ -49,10 +56,10 @@ export const MyCalendar = () => {
 
   const [currentMonth, setCurrentMonth] = React.useState(getMonth());
 
-  const [dataEvent, setDataEvent] = React.useState([]);
+  // const [dataEvent, setDataEvent] = React.useState([]);
 
   const session = useSession(); // tokens
-  const supabase = useSupabaseClient(); // talk to supabase
+  // const supabase = useSupabaseClient(); // talk to supabase
 
   const { isLoading } = useSessionContext();
 
@@ -68,47 +75,48 @@ export const MyCalendar = () => {
     return <></>;
   }
 
-  async function googleSignIn() {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        scopes: "https://www.googleapis.com/auth/calendar",
-      },
-    });
-    if (error) {
-      alert("error loging in to Google provider with Supabase");
-      console.log(error);
-    }
-  }
+  // async function googleSignIn() {
+  //   const { error } = await supabase.auth.signInWithOAuth({
+  //     provider: "google",
+  //     options: {
+  //       scopes: "https://www.googleapis.com/auth/calendar",
+  //     },
+  //   });
+  //   if (error) {
+  //     alert("error loging in to Google provider with Supabase");
+  //     console.log(error);
+  //   }
+  // }
 
-  async function signOut() {
-    await supabase.auth.signOut();
-  }
+  // async function signOut() {
+  //   await supabase.auth.signOut();
+  // }
 
-  async function getCalendarEvents() {
-    const url = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiKey}`;
+  // async function getCalendarEvents() {
+  //   const url = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiKey}`;
 
-    try {
-      const response = await fetch(url, {
-        method: "GET",
-        headers: {
-          Authorization: "Bearer " + session?.provider_token,
-          // Authorization: "Bearer " + TOKEN,
-        },
-      });
+  //   try {
+  //     const response = await fetch(url, {
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: "Bearer " + session?.provider_token,
+  //         // Authorization: "Bearer " + TOKEN,
+  //       },
+  //     });
 
-      if (!response.ok) {
-        throw new Error("Failed to retrieve calendar events.");
-      }
+  //     if (!response.ok) {
+  //       throw new Error("Failed to retrieve calendar events.");
+  //     }
 
-      const data = await response.json();
-      setDataEvent(data.items);
-      // Handle the data, which will contain information about the calendar's events.
-    } catch (error) {
-      console.error(error);
-      // Handle errors here
-    }
-  }
+  //     const data = await response.json();
+  //     setDataEvent(data.items);
+
+  //     // Handle the data, which will contain information about the calendar's events.
+  //   } catch (error) {
+  //     console.error(error);
+  //     // Handle errors here
+  //   }
+  // }
 
   async function createCalendarEvent() {
     if (
@@ -128,49 +136,63 @@ export const MyCalendar = () => {
       const hourFinish = +valueTimeFinish?.slice(0, -3);
       const minutesFinish = +valueTimeFinish?.substr(-2);
 
-      const start = new Date(year, month, day, hourStart, minutesFinish, 0);
-      const finish = new Date(year, month, day, hourFinish, minutesStart, 0);
+      const start = new Date(year, month, day, hourStart, minutesStart, 0);
+      const finish = new Date(year, month, day, hourFinish, minutesFinish, 0);
 
       const startPoint = getValues("addressStart");
+      const finishPoint = getValues("addressEnd");
       const eventDescription = getValues("description");
 
-      const event = {
-        summary: `${customer} at ${valueTimeStart} (${car}), start point: ${startPoint} `,
-        description: eventDescription,
-        start: {
-          dateTime: start.toISOString(),
-          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        },
-        end: {
-          dateTime: finish.toISOString(),
-          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        },
-      };
+      // const event = {
+      //   summary: `${customer} at ${valueTimeStart} (${car}), start point: ${startPoint} `,
+      //   description: eventDescription,
+      //   start: {
+      //     dateTime: start.toISOString(),
+      //     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      //   },
+      //   end: {
+      //     dateTime: finish.toISOString(),
+      //     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      //   },
+      // };
 
-      await fetch(
-        `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: "Bearer " + session?.provider_token,
-          },
-          body: JSON.stringify(event),
-        }
-      )
-        .then((data) => {
-          return data.json();
+      dispatch(
+        fetchPostEvents({
+          dateStart: start,
+          dateEnd: finish,
+          pointStart: startPoint,
+          pointEnd: finishPoint,
+          car,
+          customer,
+          description: eventDescription,
         })
-        .then((data) => {
-          console.log(data);
-          alert("Event created, check your Google Calendar");
-        })
-        .finally(() => getCalendarEvents());
+      );
+
+      // await fetch(
+      //   `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`,
+      //   {
+      //     method: "POST",
+      //     headers: {
+      //       Authorization: "Bearer " + session?.provider_token,
+      //     },
+      //     body: JSON.stringify(event),
+      //   }
+      // )
+      //   .then((data) => {
+      //     return data.json();
+      //   })
+      //   .then((data) => {
+      //     console.log(data);
+      //     alert("Event created, check your Google Calendar");
+      //   })
+      //   .finally(() => getCalendarEvents());
     }
   }
 
   React.useEffect(() => {
     dispatch(fetchAllOptions());
-    getCalendarEvents();
+    dispatch(fetchAllEvents());
+    // getCalendarEvents();
   }, []);
 
   React.useEffect(() => {
@@ -179,7 +201,28 @@ export const MyCalendar = () => {
 
   return (
     <S.Root onSubmit={handleSubmit(onSubmit)} popupActive>
-      {session ? (
+      <div>
+        <CalendarHeader />
+        {isOpenPopup && (
+          <CalendarAddEvent
+            session={session}
+            register={register}
+            onChangeTimeStart={onChangeTimeStart}
+            valueTimeStart={valueTimeStart}
+            onChangeTimeFinish={onChangeTimeFinish}
+            valueTimeFinish={valueTimeFinish}
+            setCar={setCar}
+            car={car}
+            onChangeDate={onChangeDate}
+            valueDate={valueDate}
+            createCalendarEvent={createCalendarEvent}
+          />
+        )}
+        <div className="my-calendar__main">
+          <CalendarMonth month={currentMonth} dataEvent={allEvents} />
+        </div>
+      </div>
+      {/* {session ? (
         <div>
           <CalendarHeader />
           {isOpenPopup && (
@@ -198,18 +241,18 @@ export const MyCalendar = () => {
             />
           )}
           <div className="my-calendar__main">
-            <CalendarMonth month={currentMonth} dataEvent={dataEvent} />
+            <CalendarMonth month={currentMonth} dataEvent={allEvents} />
           </div>
         </div>
       ) : (
         <button className="btn" onClick={() => googleSignIn()}>
           Sign In With Google
         </button>
-      )}
+      )} */}
 
-      <button className="btn" onClick={() => signOut()}>
+      {/* <button className="btn" onClick={() => signOut()}>
         Sign Out
-      </button>
+      </button> */}
     </S.Root>
   );
 };

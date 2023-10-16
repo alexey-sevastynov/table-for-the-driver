@@ -45,3 +45,5 @@ export const URL_API = `https://api.telegram.org/bot${
 }/sendMessage`;
 
 export const CARS = ["Reno", "Mercedes", "Any"];
+
+export const API_URL = "https://api-table-for-the-driver.vercel.app/";
