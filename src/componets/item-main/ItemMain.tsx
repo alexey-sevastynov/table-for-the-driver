@@ -38,7 +38,7 @@ const ItemMain: React.FC<IItemMainProps> = ({ day, month, year }) => {
 
       axios
         .post(URL_API, {
-          chat_id: import.meta.env.VITE_VITE_CHAD_ID,
+          chat_id: import.meta.env.VITE_CHAD_ID,
           parse_mode: "html",
           text: message,
         })

@@ -91,7 +91,7 @@ const DataEdit: React.FC<IDataEditProps> = ({
 
       axios
         .post(URL_API, {
-          chat_id: import.meta.env.VITE_VITE_CHAD_ID,
+          chat_id: import.meta.env.VITE_CHAD_ID,
           parse_mode: "html",
           text: message,
         })
@@ -121,7 +121,7 @@ const DataEdit: React.FC<IDataEditProps> = ({
 
       axios
         .post(URL_API, {
-          chat_id: import.meta.env.VITE_VITE_CHAD_ID,
+          chat_id: import.meta.env.VITE_CHAD_ID,
           parse_mode: "html",
           text: message,
         })
