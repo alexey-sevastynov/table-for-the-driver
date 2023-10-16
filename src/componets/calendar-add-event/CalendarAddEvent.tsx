@@ -30,7 +30,7 @@ interface CalendarAddEventProps {
 }
 
 export const CalendarAddEvent: React.FC<CalendarAddEventProps> = ({
-  session,
+  // session,
   register,
   onChangeTimeStart,
   valueTimeStart,
