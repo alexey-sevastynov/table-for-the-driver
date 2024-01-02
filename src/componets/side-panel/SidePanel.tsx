@@ -6,9 +6,11 @@ import ButttonLink from "../button-link/ButtonLink";
 import User from "../user/User";
 import { useAppSelector } from "../../redux/hook";
 
-interface ISidePanelProps {}
+interface ISidePanelProps {
+  isShowCalendar: boolean;
+}
 
-const SidePanel: React.FC<ISidePanelProps> = () => {
+const SidePanel: React.FC<ISidePanelProps> = ({ isShowCalendar }) => {
   const isAuth = useAppSelector((props) => props.works.isAuth);
 
   return (
@@ -22,13 +24,14 @@ const SidePanel: React.FC<ISidePanelProps> = () => {
             link="/table-for-the-driver/"
           />
           <ButttonLink icon="months" title="months" link="/months" />
-          <ButttonLink
-            icon="google-calendar"
-            title="events"
-            link="/calendar"
-            sizeIcon_25
-          />
-
+          {isShowCalendar && (
+            <ButttonLink
+              icon="google-calendar"
+              title="events"
+              link="/calendar"
+              sizeIcon_25
+            />
+          )}
           {isAuth && <ButttonLink icon="setup" title="setup" link="/setup" />}
         </div>
 

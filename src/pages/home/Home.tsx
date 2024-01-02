@@ -18,6 +18,7 @@ interface IHomeProps {}
 
 const Home: React.FC<IHomeProps> = () => {
   const [valueSearch, setValueSearch] = React.useState("");
+  const isShowCalendar = false;
 
   const location = useLocation();
 
@@ -77,6 +78,17 @@ const Home: React.FC<IHomeProps> = () => {
       />
     ));
 
+  console.log(dataOnWorks.length);
+
+  const showWorks =
+    dataOnWorks.length === 0 ? (
+      <p className="searchHelp">
+        "На жаль, цього місяця ще не було роботи, подивися інший місяць"
+      </p>
+    ) : (
+      dataOnWorks
+    );
+
   const onLoader = (
     <div className="center">
       <RotatingLines
@@ -91,8 +103,8 @@ const Home: React.FC<IHomeProps> = () => {
 
   return (
     <S.Root>
-      <SidePanel />
-      <HeaderMobile />
+      <SidePanel isShowCalendar={isShowCalendar} />
+      <HeaderMobile isShowCalendar={isShowCalendar} />
       <div className="colum_2">
         <h2>{isAuth ? "Hello, driver!" : "Hello, world!"}</h2>
         <main>
@@ -111,7 +123,7 @@ const Home: React.FC<IHomeProps> = () => {
           <div className="overflow">
             {status === "loaded" ? (
               valueSearch === "" ? (
-                dataOnWorks
+                showWorks
               ) : searchWorks.length === 0 ? (
                 <p className="searchHelp">
                   "Поки ще не знайшов, напевно не має такого дня. Або Ви ввели

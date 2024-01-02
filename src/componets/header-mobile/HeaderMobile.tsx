@@ -9,9 +9,11 @@ import ButttonLink from "../button-link/ButtonLink";
 
 import User from "../user/User";
 import { useAppSelector } from "../../redux/hook";
-interface IHeaderMobileProps {}
+interface IHeaderMobileProps {
+  isShowCalendar: boolean;
+}
 
-const HeaderMobile: React.FC<IHeaderMobileProps> = () => {
+const HeaderMobile: React.FC<IHeaderMobileProps> = ({ isShowCalendar }) => {
   const [toggleMenu, setToggleMenu] = React.useState<boolean>(false);
 
   const isAuth = useAppSelector((props) => props.works.isAuth);
@@ -35,12 +37,14 @@ const HeaderMobile: React.FC<IHeaderMobileProps> = () => {
               link="/table-for-the-driver/"
             />
             <ButttonLink icon="months" title="months" link="/months" />
-            <ButttonLink
-              icon="google-calendar"
-              title="events"
-              link="/calendar"
-              sizeIcon_25
-            />
+            {isShowCalendar && (
+              <ButttonLink
+                icon="google-calendar"
+                title="events"
+                link="/calendar"
+                sizeIcon_25
+              />
+            )}
           </div>
 
           {isAuth && (
