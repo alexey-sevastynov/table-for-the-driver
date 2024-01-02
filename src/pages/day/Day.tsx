@@ -20,6 +20,7 @@ interface IDayProps {}
 const Day: React.FC<IDayProps> = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
+  const isShowCalendar = false;
 
   const stateLocation = location.state; //{"day": 7, "month": 7,"year": 2023}
 
@@ -40,8 +41,8 @@ const Day: React.FC<IDayProps> = () => {
 
   return (
     <S.Root>
-      <SidePanel />
-      <HeaderMobile />
+      <SidePanel isShowCalendar={isShowCalendar} />
+      <HeaderMobile isShowCalendar={isShowCalendar} />
       <div className="colum_2">
         <h2>{isAuth ? "Hello, driver!" : "Hello, world!"}</h2>
         <main>

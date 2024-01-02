@@ -18,7 +18,7 @@ interface IMounthsProps {}
 const Mounths: React.FC<IMounthsProps> = () => {
   const { items } = useAppSelector((props) => props.works.jobs);
   const isAuth = useAppSelector((props) => props.works.isAuth);
-
+  const isShowCalendar = false;
   //________________________________
   const getListAllYears = items.map((item: IWork) => item.year); // [2023, 2023, 2023, 2023, 2023, 2024, 2024, 2024, 2023]
 
@@ -73,8 +73,8 @@ const Mounths: React.FC<IMounthsProps> = () => {
 
   return (
     <S.Root>
-      <SidePanel />
-      <HeaderMobile />
+      <SidePanel isShowCalendar={isShowCalendar} />
+      <HeaderMobile isShowCalendar={isShowCalendar} />
       <div className="colum_2">
         <h2>{isAuth ? "Hello, driver!" : "Hello, world!"}</h2>
         <main>

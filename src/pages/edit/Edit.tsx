@@ -13,6 +13,7 @@ type IEditProps = {};
 
 const Edit: React.FC<IEditProps> = () => {
   const dispatch = useAppDispatch();
+  const isShowCalendar = false;
   let idnew = 0;
   const location = useLocation();
 
@@ -27,8 +28,8 @@ const Edit: React.FC<IEditProps> = () => {
 
   return (
     <S.Root>
-      <SidePanel />
-      <HeaderMobile />
+      <SidePanel isShowCalendar={isShowCalendar} />
+      <HeaderMobile isShowCalendar={isShowCalendar} />
       <div className="colum_2">
         <h2>{isAuth ? "Hello, driver!" : "Hello, world!"}</h2>
         <main>

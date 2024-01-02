@@ -38,6 +38,8 @@ const Setup: React.FC<ISetupProps> = () => {
   const [isEdit, setIsEdit] = React.useState<boolean>(false);
   const dispatch = useAppDispatch();
 
+  const isShowCalendar = false;
+
   //@ts-ignore
   const { percent, rate, items, customerItem } = useAppSelector(
     (props) => props.customer
@@ -159,8 +161,8 @@ const Setup: React.FC<ISetupProps> = () => {
 
   return (
     <S.Root>
-      <SidePanel />
-      <HeaderMobile />
+      <SidePanel isShowCalendar={isShowCalendar} />
+      <HeaderMobile isShowCalendar={isShowCalendar} />
       <div className="colum_2">
         <h2>{isAuth ? "Hello, driver!" : "Hello, world!"}</h2>
         <main>

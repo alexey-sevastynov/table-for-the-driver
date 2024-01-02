@@ -27,6 +27,7 @@ const Add: React.FC<IAddProps> = () => {
   const { items } = useAppSelector((props) => props.works.jobs);
   const { items: options } = useAppSelector((props) => props.customer);
   const isAuth = useAppSelector((props) => props.works.isAuth);
+  const isShowCalendar = false;
 
   const date = new Date();
 
@@ -194,8 +195,8 @@ const Add: React.FC<IAddProps> = () => {
 
   return (
     <S.Root>
-      <SidePanel />
-      <HeaderMobile />
+      <SidePanel isShowCalendar={isShowCalendar} />
+      <HeaderMobile isShowCalendar={isShowCalendar} />
       <div className="colum_2">
         <h2>{isAuth ? "Hello, driver!" : "Hello, world!"}</h2>
         <main>
